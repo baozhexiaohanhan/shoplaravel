@@ -39,7 +39,7 @@ class LoginController extends Controller
       public function sendSms($mobile,$code)
     {
 
-AlibabaCloud::accessKeyClient('LTAI4GGztP28VTaEQn9pMz9C', 'hY5DL4Y0iple37NwD03apfDv5XA0Ar')
+AlibabaCloud::accessKeyClient('LTAI4G7geaV9jn6u1buFRqhd', '0Isn5WxtkxK9X7pD5Za4vrDeGZ9P1d')
                         ->regionId('cn-hangzhou')
                         ->asDefaultClient();
 
@@ -55,8 +55,8 @@ try {
                                         'query' => [
                                           'RegionId' => "cn-hangzhou",
                                           'PhoneNumbers' => "$mobile",
-                                          'SignName' => "白洁洁",
-                                          'TemplateCode' => "SMS_182670126",
+                                          'SignName' => "乐柠",
+                                          'TemplateCode' => "SMS_181865178",
                                           'TemplateParam' => "{code:$code}",
                                         ],
                                     ])
