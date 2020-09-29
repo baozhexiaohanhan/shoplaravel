@@ -15,6 +15,7 @@
 //     return view('welcome');
 // });
 Route::any('/','IndexController@index');
+Route::any('/kile/{id}','IndexController@kile');
 
 
 Route::get('login','Login\LoginController@login');
