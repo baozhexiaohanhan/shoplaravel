@@ -334,97 +334,26 @@
 							</ul>
 							<ul class="goods-list unstyled">
 								<li>
+									@foreach($key as $k=>$v)
+									<div class="list-wrap">
+										<div class="p-img">
+											<img src="{{$v['goods_img']}}" />
+										</div>
+										<div class="attr">
+											<em>{{$v['goods_name']}}</em>
+										</div>
+										<div class="price">
+											<strong>
+											<em>¥</em>
+											<i>{{$v['market_price']}}</i>
+										</strong>
+										</div>
+										<div class="operate">
+											<a href="javascript:void(0);" class="sui-btn btn-bordered">加入购物车</a>
+										</div>
+									</div>
+									@endforeach
 
-									<div class="list-wrap">
-										<div class="p-img">
-											<img src="/static/img/_/part01.png" />
-										</div>
-										<div class="attr">
-											<em>Apple苹果iPhone 6s (A1699)</em>
-										</div>
-										<div class="price">
-											<strong>
-											<em>¥</em>
-											<i>6088.00</i>
-										</strong>
-										</div>
-										<div class="operate">
-											<a href="javascript:void(0);" class="sui-btn btn-bordered">加入购物车</a>
-										</div>
-									</div>
-									
-								</li>
-								<li>
-									<div class="list-wrap">
-										<div class="p-img">
-											<img src="/static/img/_/part02.png" />
-										</div>
-										<div class="attr">
-											<em>Apple苹果iPhone 6s (A1699)</em>
-										</div>
-										<div class="price">
-											<strong>
-											<em>¥</em>
-											<i>6088.00</i>
-										</strong>
-										</div>
-										<div class="operate">
-											<a href="javascript:void(0);" class="sui-btn btn-bordered">加入购物车</a>
-										</div>
-									</div>
-								</li>
-								<li>
-									<div class="list-wrap">
-										<div class="p-img">
-											<img src="/static/img/_/part03.png" />
-										</div>
-										<div class="attr">
-											<em>Apple苹果iPhone 6s (A1699)</em>
-										</div>
-										<div class="price">
-											<strong>
-											<em>¥</em>
-											<i>6088.00</i>
-										</strong>
-										</div>
-										<div class="operate">
-											<a href="javascript:void(0);" class="sui-btn btn-bordered">加入购物车</a>
-										</div>
-									</div>
-									<div class="list-wrap">
-										<div class="p-img">
-											<img src="/static/img/_/part02.png" />
-										</div>
-										<div class="attr">
-											<em>Apple苹果iPhone 6s (A1699)</em>
-										</div>
-										<div class="price">
-											<strong>
-											<em>¥</em>
-											<i>6088.00</i>
-										</strong>
-										</div>
-										<div class="operate">
-											<a href="javascript:void(0);" class="sui-btn btn-bordered">加入购物车</a>
-										</div>
-									</div>
-									<div class="list-wrap">
-										<div class="p-img">
-											<img src="/static/img/_/part03.png" />
-										</div>
-										<div class="attr">
-											<em>Apple苹果iPhone 6s (A1699)</em>
-										</div>
-										<div class="price">
-											<strong>
-											<em>¥</em>
-											<i>6088.00</i>
-										</strong>
-										</div>
-										<div class="operate">
-											<a href="javascript:void(0);" class="sui-btn btn-bordered">加入购物车</a>
-										</div>
-									</div>
 								</li>
 							</ul>
 						</div>
@@ -535,11 +464,12 @@
 									<li>像素：1000-1600万</li>
 									<li>机身内存：64GB</li>
 								</ul>
+								<h2 style="color: red">商品视图</h2>
+								@foreach($ddd as $k=>$v)
 								<div class="intro-detail">
-									<img src="/static/img/_/intro01.png" />
-									<img src="/static/img/_/intro02.png" />
-									<img src="/static/img/_/intro03.png" />
+									<img src="{{$v['goods_img']}}" width="900px" />
 								</div>
+								@endforeach
 							</div>
 							<div id="two" class="tab-pane">
 								<p>规格与包装</p>

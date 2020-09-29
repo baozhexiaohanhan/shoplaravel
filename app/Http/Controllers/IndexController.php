@@ -19,10 +19,12 @@ class IndexController extends Controller
 
     public function kile($id){
     	//详情
+        $key = Index::orderBy('goods_id')->limit(6)->get()->toArray();
     	$aaa=Index::where('goods_id',$id)->get()->toArray();
     	$bbb = Index::orderBy('goods_id','desc')->limit(5)->get()->toArray();
     	$ccc = Index::where('goods_id',$id)->get()->toArray();
-    	return view('item.item',['aaa'=>$aaa,'bbb'=>$bbb,'ccc'=>$ccc]);
+    	$ddd=Index::where('goods_id',$id)->get()->toArray();
+    	return view('item.item',['aaa'=>$aaa,'bbb'=>$bbb,'ccc'=>$ccc,'key'=>$key,'ddd'=>$ddd]);
     }
 
 
