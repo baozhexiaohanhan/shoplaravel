@@ -5,7 +5,7 @@
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
 	<title>品优购，优质！优质！</title>
-	 <link rel="icon" href="assets//static/img/favicon.ico">
+	 <link rel="icon" href="assets/static/img/favicon.ico">
 
     <link rel="stylesheet" type="text/css" href="/static/css/webbase.css" />
     <link rel="stylesheet" type="text/css" href="/static/css/pages-JD-index.css" />
@@ -23,8 +23,13 @@
 			<div class="py-container">
 				<div class="shortcut">
 					<ul class="fl">
+						@if(!session('admin_id'))
 						<li class="f-item">品优购欢迎您！</li>
-						<li class="f-item">请<a href="login" target="_blank">登录</a>　<span><a href="register" target="_blank">免费注册</a></span></li>
+						<li class="f-item">请<a href="{{url('/login')}}" target="_blank">登录</a>　<span><a href="{{url('/reg')}}" target="_blank">免费注册</a></span>
+						@else
+						<span>欢迎您{{session('admin_name')}}</span></li> <span><a href="{{url('/logout')}}" target="_blank">切换账号</a></span>
+					</ul>
+						@endif
 					</ul>
 					<ul class="fr">
 						<li class="f-item">我的订单</li>

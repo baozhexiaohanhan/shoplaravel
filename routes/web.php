@@ -22,3 +22,7 @@ Route::get('register','Login\LoginController@register');
 Route::get('/getcode','Login\LoginController@getCode');
 Route::any('/login/store','Login\LoginController@store');
 Route::any('/login/create','Login\LoginController@create');
+
+
+
+Route::any('/login/create','Login\LoginController@create');
