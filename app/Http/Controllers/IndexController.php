@@ -22,7 +22,6 @@ class IndexController extends Controller
         $catedata = $this->putcate();
         //无限极分类
         $tree = $this->Treecate($catedata);
-        // dd($tree);
     	return view('/index',['goods'=>$goods,'nue'=>$nue,'word'=>$word,'tree'=>$tree,'good'=>$good]);
     }
 
@@ -63,6 +62,4 @@ class IndexController extends Controller
         $catedata = Category::get();
         return $catedata;
     }
-
-
 }
