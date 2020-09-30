@@ -889,7 +889,7 @@
 		<div id="J-toolbar-load-hook"></div>
 
 	</div>
-</div>
+</div> 
 <!--购物车单元格 模板-->
 <script type="text/template" id="tbar-cart-item-template">
 	<div class="tbar-cart-item" >

@@ -275,15 +275,7 @@
 							
 							
 						</div>
-						
-						
-						
-						
-						
-						
-						
-						
-						
+
 						<div class="summary-wrap">
 							<div class="fl title">
 								<div class="control-group">
@@ -308,7 +300,7 @@
 			<!--product-detail-->
 			<div class="clearfix product-detail">
 				<div class="fl aside">
-					<ul class="sui-nav nav-tabs tab-wraped">
+					<ul class="sui-nav nav-tabs tab-wraped"> 
 						<li class="active">
 							<a href="#index" data-toggle="tab">
 								<span>相关分类</span>
