@@ -27,3 +27,7 @@ Route::any('/login/create','Login\LoginController@create');
 
 
 Route::any('/login/create','Login\LoginController@create');
+
+Route::get('search/','Search\SearchController@index');
+
+Route::get('key/{id}','Search\SearchController@key');

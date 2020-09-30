@@ -137,12 +137,12 @@
 					<div class="all-sort-list2">
 						 @foreach($tree as $k=>$v)
                     <div class="item bo">
-                        <h3><a href="">{{$v->cat_name}}</a></h3>
+                        <h3><a href="/search">{{$v->cat_name}}</a></h3>
                         <div class="item-list clearfix">
                             <div class="subitem">
                                 @foreach($v['son'] as $vv)
                                     <dl class="fore1">
-                                        <dt><a href="">{{$vv->cat_name}}</a></dt>
+                                        <dt><a href="/key/{{$v['goods_id']}}">{{$vv->cat_name}}</a></dt>
                                         <dd>
                                             @foreach($vv['son'] as $vvv)\
                                             <em><a href="">{{$vvv->cat_name}}</a></em>
