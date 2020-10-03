@@ -137,7 +137,7 @@
 					<div class="all-sort-list2">
 						 @foreach($tree as $k=>$v)
                     <div class="item bo">
-                        <h3><a href="/search">{{$v->cat_name}}</a></h3>
+                        <h3><a href="/key/{{$v['goods_id']}}">{{$v->cat_name}}</a></h3>
                         <div class="item-list clearfix">
                             <div class="subitem">
                                 @foreach($v['son'] as $vv)
@@ -145,7 +145,7 @@
                                         <dt><a href="/key/{{$v['goods_id']}}">{{$vv->cat_name}}</a></dt>
                                         <dd>
                                             @foreach($vv['son'] as $vvv)\
-                                            <em><a href="">{{$vvv->cat_name}}</a></em>
+                                            <em><a href="/key/{{$v['goods_id']}}">{{$vvv->cat_name}}</a></em>
                                             @endforeach
                                         </dd>
                                     </dl>
@@ -889,7 +889,7 @@
 		<div id="J-toolbar-load-hook"></div>
 
 	</div>
-</div> 
+</div>
 <!--购物车单元格 模板-->
 <script type="text/template" id="tbar-cart-item-template">
 	<div class="tbar-cart-item" >
