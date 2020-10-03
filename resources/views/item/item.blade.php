@@ -289,7 +289,7 @@
 							<div class="fl">
 								<ul class="btn-choose unstyled">
 									<li>
-										<a href="cart.html" target="_blank" class="sui-btn  btn-danger addshopcar">加入购物车</a>
+										<a href="javascript:void(0);" class="sui-btn  btn-danger addshopcar">加入购物车</a>
 									</li>
 								</ul>
 							</div>
@@ -890,13 +890,20 @@ $(function(){
 	});
 
 })
+
 </script>
 <script type="text/javascript" src="/static/js/model/cartModel.js"></script>
 <script type="text/javascript" src="/static/js/plugins/jquery.easing/jquery.easing.min.js"></script>
 <script type="text/javascript" src="/static/js/plugins/sui/sui.min.js"></script>
 <script type="text/javascript" src="/static/js/plugins/jquery.jqzoom/jquery.jqzoom.js"></script>
 <script type="text/javascript" src="/static/js/plugins/jquery.jqzoom/zoom.js"></script>
-<script type="text/javascript" src="/static/js/pages/index.js"></script>
+<script type="text/javascript" src="/static/js/pages/index.js"></script> 
 </body>
 
 </html>
+<script type="text/javascript">
+	
+$(document).on('click','.addshopcar',function(){
+	alert(12);
+})
+</script>
