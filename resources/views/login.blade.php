@@ -12,8 +12,12 @@
 </head>
 
 <body>
-<<<<<<< HEAD
 	<div class="login-box">
+		<!--head-->
+		<div class="py-container logoArea">
+			<a href="" class="logo"></a>
+		</div>
+		<!--loginArea-->
 		<div class="loginArea">
 			<div class="py-container login">
 				<div class="loginform">
@@ -34,39 +38,58 @@
 							<p>二维码登录，暂为官网二维码</p>
 							<img src="/static/img/wx_cz.jpg" />
 						</div>
-=======
-<h1>登录页面</h1>
-		<!--loginArea-->
->>>>>>> ce5879cf50b717a1e5741dda0ee01e011ef128d1
 						<div id="profile" class="tab-pane  active">
 							<form class="sui-form">
-								<div ><span class="add-on loginname"></span>
-									<input id="prependedInput" type="text" placeholder="邮箱/用户名/手机号" name="admin_tel">
+								<div class="input-prepend"><span class="add-on loginname"></span>
+									<input id="prependedInput" type="text" placeholder="邮箱/用户名/手机号" name="admin_tel" class="span2 input-xfat">
 								</div>
-								<div><span class="add-on loginpwd"></span>
-									<input id="prependedInput" type="password" placeholder="请输入密码" name="admin_pwd">
+								<div class="input-prepend"><span class="add-on loginpwd"></span>
+									<input id="prependedInput" type="password" placeholder="请输入密码" name="admin_pwd" class="span2 input-xfat">
 								</div>
-			
+								<div class="setting">
+									<label class="checkbox inline">
+          <input name="m1" type="checkbox" value="2" checked=""> 
+          自动登录
+        </label>
+									<span class="forget">忘记密码？</span>
+								</div>
 								<div class="logined">
-									<a class=" btn-danger" id="bin-aa" type="button" >登&nbsp;&nbsp;录</a>
+									<a class="sui-btn btn-block btn-xlarge btn-danger" id="bin-aa" type="button" >登&nbsp;&nbsp;录</a>
 								</div>
 							</form>
-<<<<<<< HEAD
 							<div class="otherlogin">
+								<div class="types">
+									<ul>
+										<li><img src="/static/img/qq.png" width="35px" height="35px" /></li>
+										<li><img src="/static/img/sina.png" /></li>
+										<li><img src="/static/img/ali.png" /></li>
+										<li><img src="/static/img/weixin.png" /></li>
+									</ul>
+								</div>
 								<span class="register"><a href="register" target="_blank">立即注册</a></span>
-=======
-
->>>>>>> ce5879cf50b717a1e5741dda0ee01e011ef128d1
 							</div>
 						</div>
+					</div>
 				</div>
-<<<<<<< HEAD
+			</div>
+		</div>
+		<!--foot-->
+		<div class="py-container copyright">
+			<ul>
+				<li>关于我们</li>
+				<li>联系我们</li>
+				<li>联系客服</li>
+				<li>商家入驻</li>
+				<li>营销中心</li>
+				<li>手机品优购</li>
+				<li>销售联盟</li>
+				<li>品优购社区</li>
+			</ul>
+			<div class="address">地址：北京市昌平区建材城西路金燕龙办公楼一层 邮编：100096 电话：400-618-4000 传真：010-82935100</div>
+			<div class="beian">京ICP备08001421号京公网安备110108007702
 			</div>
 		</div>
 	</div>
-=======
-		<!--foot-->
->>>>>>> ce5879cf50b717a1e5741dda0ee01e011ef128d1
 
 <script type="text/javascript" src="/static/js/plugins/jquery/jquery.min.js"></script>
 <script type="text/javascript" src="/static/js/plugins/jquery.easing/jquery.easing.min.js"></script>
@@ -80,18 +103,15 @@
 	 $(document).on('click','#bin-aa',function(){
 	 	var admin_tel = $('input[name="admin_tel"]').val();
 	 	var admin_pwd = $('input[name="admin_pwd"]').val();
-	 	$.post('/login/logindo',{admin_tel:admin_tel,admin_pwd:admin_pwd},function (result) {
+	 	$.post('/login/create',{admin_tel:admin_tel,admin_pwd:admin_pwd},function (result) {
             if(result.code=='00001'){
                 alert(result.msg);
             }
             if(result.code=='00002'){
                 alert(result.msg);
             }
-            if(result.code=='00003'){
-            	alert(result,msg);
-            }
             if(result.code=='00000'){
-                alert('登录成功');
+                location.href = "/"
             }
         },'json')
 

@@ -23,9 +23,5 @@ class SearchController extends Controller
     	return view('key.index',['key'=>$key,'aaa'=>$aaa,'App'=>$App]);
     }
 
-    public function addCart(Request $request , $goods_id){
 
-        $goods_id = $request->post('goods_id');
-        dd($goods_id);
-    }
 }

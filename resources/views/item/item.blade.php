@@ -275,7 +275,7 @@
 							
 							
 						</div>
-						
+
 						<div class="summary-wrap">
 							<div class="fl title">
 								<div class="control-group">
@@ -289,7 +289,7 @@
 							<div class="fl">
 								<ul class="btn-choose unstyled">
 									<li>
-										<a href="javascript:void(0);" class="sui-btn  btn-danger addshopcar">加入购物车</a>
+										<a href="cart.html" target="_blank" class="sui-btn  btn-danger addshopcar">加入购物车</a>
 									</li>
 								</ul>
 							</div>
@@ -300,7 +300,7 @@
 			<!--product-detail-->
 			<div class="clearfix product-detail">
 				<div class="fl aside">
-					<ul class="sui-nav nav-tabs tab-wraped">
+					<ul class="sui-nav nav-tabs tab-wraped"> 
 						<li class="active">
 							<a href="#index" data-toggle="tab">
 								<span>相关分类</span>
@@ -800,6 +800,18 @@
 					<div class="tbar-panel-main">
 						<div class="tbar-panel-content J-panel-content">
 							<div class="jt-history-wrap">
+								<ul>
+									<!--<li class="jth-item">
+										<a href="#" class="img-wrap"> <img src=".portal//static/img/like_03.png" height="100" width="100" /> </a>
+										<a class="add-cart-button" href="#" target="_blank">加入购物车</a>
+										<a href="#" target="_blank" class="price">￥498.00</a>
+									</li>
+									<li class="jth-item">
+										<a href="#" class="img-wrap"> <img src="portal//static/img/like_02.png" height="100" width="100" /></a>
+										<a class="add-cart-button" href="#" target="_blank">加入购物车</a>
+										<a href="#" target="_blank" class="price">￥498.00</a>
+									</li>-->
+								</ul>
 								<a href="#" class="history-bottom-more" target="_blank">查看更多足迹商品 &gt;&gt;</a>
 							</div>
 						</div>
@@ -878,20 +890,13 @@ $(function(){
 	});
 
 })
-
 </script>
 <script type="text/javascript" src="/static/js/model/cartModel.js"></script>
 <script type="text/javascript" src="/static/js/plugins/jquery.easing/jquery.easing.min.js"></script>
 <script type="text/javascript" src="/static/js/plugins/sui/sui.min.js"></script>
 <script type="text/javascript" src="/static/js/plugins/jquery.jqzoom/jquery.jqzoom.js"></script>
 <script type="text/javascript" src="/static/js/plugins/jquery.jqzoom/zoom.js"></script>
-<script type="text/javascript" src="/static/js/pages/index.js"></script> 
+<script type="text/javascript" src="/static/js/pages/index.js"></script>
 </body>
 
 </html>
-<script type="text/javascript">
-	
-$(document).on('click','.addshopcar',function(){
-		alert(909090);
-})
-</script>
