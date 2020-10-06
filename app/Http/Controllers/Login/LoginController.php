@@ -55,8 +55,8 @@ try {
                                         'query' => [
                                           'RegionId' => "cn-hangzhou",
                                           'PhoneNumbers' => "$mobile",
-                                          'SignName' => "乐柠",
-                                          'TemplateCode' => "SMS_181865178",
+                                          'SignName' => "老铁火锅",
+                                          'TemplateCode' => "SMS_203672773",
                                           'TemplateParam' => "{code:$code}",
                                         ],
                                     ])
