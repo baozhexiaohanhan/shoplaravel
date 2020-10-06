@@ -13,11 +13,6 @@
 
 <body>
 	<div class="login-box">
-		<!--head-->
-		<div class="py-container logoArea">
-			<a href="" class="logo"></a>
-		</div>
-		<!--loginArea-->
 		<div class="loginArea">
 			<div class="py-container login">
 				<div class="loginform">
@@ -58,35 +53,11 @@
 								</div>
 							</form>
 							<div class="otherlogin">
-								<div class="types">
-									<ul>
-										<li><img src="/static/img/qq.png" width="35px" height="35px" /></li>
-										<li><img src="/static/img/sina.png" /></li>
-										<li><img src="/static/img/ali.png" /></li>
-										<li><img src="/static/img/weixin.png" /></li>
-									</ul>
-								</div>
 								<span class="register"><a href="register" target="_blank">立即注册</a></span>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div>
-		<!--foot-->
-		<div class="py-container copyright">
-			<ul>
-				<li>关于我们</li>
-				<li>联系我们</li>
-				<li>联系客服</li>
-				<li>商家入驻</li>
-				<li>营销中心</li>
-				<li>手机品优购</li>
-				<li>销售联盟</li>
-				<li>品优购社区</li>
-			</ul>
-			<div class="address">地址：北京市昌平区建材城西路金燕龙办公楼一层 邮编：100096 电话：400-618-4000 传真：010-82935100</div>
-			<div class="beian">京ICP备08001421号京公网安备110108007702
 			</div>
 		</div>
 	</div>
@@ -109,6 +80,9 @@
             }
             if(result.code=='00002'){
                 alert(result.msg);
+            }
+            if(result.code=='00003'){
+            	alert(result,msg);
             }
             if(result.code=='00000'){
                 location.href = "/"

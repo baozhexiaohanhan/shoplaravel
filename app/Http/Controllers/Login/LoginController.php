@@ -75,6 +75,7 @@ try {
         $admin_pwd = $request->post('admin_pwd');
         $admin_pwds = $request->post('admin_pwds');
         $admin_tel = $request->post('admin_tel');
+         $admin_email = $request->post('admin_email');
         $len = strlen($admin_pwd);
         $t = Login::where(['admin_tel'=>$admin_tel])->first();
         $a = Login::where(['admin_name'=>$admin_name])->first();
@@ -94,7 +95,8 @@ try {
         $data = [
             'admin_name' => $admin_name,
             'admin_tel' => $admin_tel,
-            'admin_pwd'=>$admin_pwd
+            'admin_pwd'=>$admin_pwd,
+            'admin_email'=>$admin_email
         ];
         $res = Login::insert($data);
         if(!$res){

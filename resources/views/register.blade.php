@@ -14,11 +14,6 @@
 
 <body>
 	<div class="register py-container ">
-		<!--head-->
-		<div class="logoArea">
-			<a href="" class="logo"></a>
-		</div>
-		<!--register-->
 		<div class="registerArea">
 			<h3>注册新用户<span class="go">我有账号，去<a href="login" target="_blank">登陆</a></span></h3>
 			<div class="info">
@@ -51,6 +46,13 @@
 							<input type="text" placeholder="请输入你的手机号" name="admin_tel" class="input-xfat input-xlarge">
 						</div>
 					</div>
+						<div class="control-group">
+						<label class="control-label">邮箱</label>
+						<div class="controls">
+							<input type="text" placeholder="邮箱"  name="admin_email" class="input-xfat input-xlarge">
+							   <div><span class="pass4"></span></div>
+						</div>
+					</div>
 					<div class="control-group">
 						<label for="inputPassword" class="control-label">短信验证码：</label>
 						<div class="controls">
@@ -71,23 +73,6 @@
 						</div>
 					</div>
 				</form>
-				<div class="clearfix"></div>
-			</div>
-		</div>
-		<!--foot-->
-		<div class="py-container copyright">
-			<ul>
-				<li>关于我们</li>
-				<li>联系我们</li>
-				<li>联系客服</li>
-				<li>商家入驻</li>
-				<li>营销中心</li>
-				<li>手机品优购</li>
-				<li>销售联盟</li>
-				<li>品优购社区</li>
-			</ul>
-			<div class="address">地址：北京市昌平区建材城西路金燕龙办公楼一层 邮编：100096 电话：400-618-4000 传真：010-82935100</div>
-			<div class="beian">京ICP备08001421号京公网安备110108007702
 			</div>
 		</div>
 	</div>
@@ -131,6 +116,17 @@
         }
     })
 
+       $(document).on('blur','input[name="admin_email"]',function(){
+        var _this = $(this);
+        var admin_email = _this.val();
+        if(admin_email==""){
+            $(".pass4").css('color','red').html("邮箱不能为空");
+        }else{
+            $(".pass4").css('color','green').html("已填写");   
+        }
+    })
+
+
         $('#getcode').click(function(){
         	var mobile = $('input[name="admin_tel"]').val();
         	var reg = /^1[3|5|6|7|8|9]\d{9}$/;
@@ -154,8 +150,9 @@
         	var admin_pwd = $('input[name="admin_pwd"]').val();
         	var admin_pwds = $('input[name="admin_pwds"]').val();
         	var admin_tel = $('input[name="admin_tel"]').val();
+        	var admin_email = $('input[name="admin_email"]').val();
         	var code = $('input[name="code"]').val();
-        	 $.post('/login/store',{admin_name:admin_name,admin_pwd:admin_pwd,admin_pwds:admin_pwds,admin_tel:admin_tel,code:code},function (result) {
+        	 $.post('/login/store',{admin_name:admin_name,admin_pwd:admin_pwd,admin_pwds:admin_pwds,admin_tel:admin_tel,admin_email:admin_email,code:code},function (result) {
             if(result.code=='00001'){
                 alert(result.msg);
             }

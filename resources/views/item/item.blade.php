@@ -276,14 +276,6 @@
 							
 						</div>
 						
-						
-						
-						
-						
-						
-						
-						
-						
 						<div class="summary-wrap">
 							<div class="fl title">
 								<div class="control-group">
@@ -808,18 +800,6 @@
 					<div class="tbar-panel-main">
 						<div class="tbar-panel-content J-panel-content">
 							<div class="jt-history-wrap">
-								<ul>
-									<!--<li class="jth-item">
-										<a href="#" class="img-wrap"> <img src=".portal//static/img/like_03.png" height="100" width="100" /> </a>
-										<a class="add-cart-button" href="#" target="_blank">加入购物车</a>
-										<a href="#" target="_blank" class="price">￥498.00</a>
-									</li>
-									<li class="jth-item">
-										<a href="#" class="img-wrap"> <img src="portal//static/img/like_02.png" height="100" width="100" /></a>
-										<a class="add-cart-button" href="#" target="_blank">加入购物车</a>
-										<a href="#" target="_blank" class="price">￥498.00</a>
-									</li>-->
-								</ul>
 								<a href="#" class="history-bottom-more" target="_blank">查看更多足迹商品 &gt;&gt;</a>
 							</div>
 						</div>
@@ -912,6 +892,6 @@ $(function(){
 <script type="text/javascript">
 	
 $(document).on('click','.addshopcar',function(){
-	alert(12);
+		alert(909090);
 })
 </script>
