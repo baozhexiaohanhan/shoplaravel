@@ -62,4 +62,6 @@ class IndexController extends Controller
         $catedata = Category::get();
         return $catedata;
     }
+
+
 }
