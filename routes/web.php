@@ -14,15 +14,14 @@
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-Route::any('/','IndexController@index');
+// Route::any('/','IndexController@index');
 Route::any('/kile/{id}','IndexController@kile');
 
 
-Route::get('login','Login\LoginController@login');
 Route::get('register','Login\LoginController@register');
-Route::get('/getcode','Login\LoginController@getCode');
-Route::any('/login/store','Login\LoginController@store');
-Route::any('/login/create','Login\LoginController@create');
+Route::any('/login/registerdo','Login\LoginController@registerdo');
+Route::any('login','Login\LoginController@login');
+Route::any('/login/logindo','Login\LoginController@logindo');
 
 
 
