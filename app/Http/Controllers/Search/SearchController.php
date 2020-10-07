@@ -11,6 +11,8 @@ class SearchController extends Controller
     public function index(){
     	$key = Search::orderBy('goods_id')->limit(20)->get()->toArray();
 
+        
+        
     	return view('item.search',['key'=>$key]);
     }
 
@@ -21,6 +23,11 @@ class SearchController extends Controller
 
         $App =Search::where('goods_id',$id)->get()->toArray();
     	return view('key.index',['key'=>$key,'aaa'=>$aaa,'App'=>$App]);
+    }
+
+
+    public function brand(){
+
     }
 
 

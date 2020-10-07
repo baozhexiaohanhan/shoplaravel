@@ -161,11 +161,6 @@
 			</div>
 			<!--selector-->
 			<div class="clearfix selector">
-				<div class="type-wrap">
-					<div class="fl key">手机、数码、配件</div>
-					<div class="fl value"></div>
-					<div class="fl ext"></div>
-				</div>
 				<div class="type-wrap logo">
 					<div class="fl key brand">品牌</div>
 					<div class="value logos">
