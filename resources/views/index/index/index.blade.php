@@ -165,7 +165,7 @@
 {{--                        <div class=" active item">--}}
                             @foreach($good as $k=>$v)
                                 <div class="item">
-                                    <a href="/item/{{$v->goods_id}}">
+                                    <a href="/particulars/{{$v->goods_id}}">
                                         <img src="{{$v->goods_img}}" width="450px" height="1000px" />
                                     </a>
                                 </div>

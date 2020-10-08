@@ -73,7 +73,7 @@ class LoginController extends Controller
 
 // Download：https://github.com/aliyun/openapi-sdk-php
 // Usage：https://github.com/aliyun/openapi-sdk-php/blob/master/README.md
-        AlibabaCloud::accessKeyClient('LTAI4GGztP28VTaEQn9pMz9C', 'hY5DL4Y0iple37NwD03apfDv5XA0Ar')
+        AlibabaCloud::accessKeyClient('LTAI4GFccq2jJ5vjx9C1XNir', 'V97fmw5pHOmq5J0ij8RUZtQgdXDSko')
             ->regionId('cn-hangzhou')
             ->asDefaultClient();
         try {
@@ -88,8 +88,8 @@ class LoginController extends Controller
                     'query' => [
                         'RegionId' => "cn-hangzhou",
                         'PhoneNumbers' => $name,
-                        'SignName' => "白洁洁",
-                        'TemplateCode' => "SMS_182670126",
+                        'SignName' => "龙龙小草",
+                        'TemplateCode' => "SMS_182665157",
                         'TemplateParam' => "{code:$code}",
                     ],
                 ])
