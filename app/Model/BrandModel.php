@@ -4,10 +4,10 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class BrandModel extends Model
 {
     //指定表面
-    protected $table = 'ecs_category';
-    protected $primaryKey = 'cat_id';
+    protected $table = 'brand';
+    protected $primaryKey = 'brand_id';
     public $timestamps = false;
 }

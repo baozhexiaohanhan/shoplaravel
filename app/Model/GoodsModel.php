@@ -4,12 +4,13 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Goods extends Model
+class GoodsModel extends Model
 {
-    protected $table = 'ecs_goods_gallery';
+    //指定表面
+    protected $table = 'ecs_goods';
     protected $primaryKey = 'goods_id';
     public $timestamps = false;
 
-    //黑名单
-    protected $guarded = [];
+
+
 }
