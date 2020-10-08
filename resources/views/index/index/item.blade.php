@@ -170,6 +170,7 @@
                 @foreach($goo as $v)
                 <div class="sku-name">
                     <h4>{{$v['goods_name']}}</h4>
+                    <input type="hidden" class="goods_id" value="{{$v['goods_id']}}">
                 </div>
                 <div class="news"><span>推荐选择下方[移动优惠购],手机套餐齐搞定,不用换号,每月还有花费返</span></div>
                 <div class="summary">
@@ -951,8 +952,9 @@
 </html>
 <script scr="/static/jqery.min.js"></script>
 <script>
-    
     $(document).on('click','#jia',function (){
-        alert(2222222222);
+        var goods_id = $('.goods_id').val();
+        
+        alert(goods_id);
     })
 </script>
