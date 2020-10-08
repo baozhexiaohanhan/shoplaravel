@@ -18,7 +18,9 @@ Route::any('/logout','Index\LoginController@logout');//退出
 Route::get('/reg','Index\LoginController@reg');//注册
 Route::any('/reg/sendSMS','Index\LoginController@sendSMS');//发送短信验证码
 Route::any('/regdo','Index\LoginController@regdo');//执行注册
-
 Route::get('/item/{id}','Index\IndexController@item');
-
+Route::get('/getattrprice','Index\IndexController@getattrprice');
 Route::get('/serch/{id}','Index\IndexController@serch');
+Route::get('/addCat','Index\CatController@addCat');//购物车
+
+
