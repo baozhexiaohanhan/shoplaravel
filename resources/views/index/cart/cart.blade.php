@@ -96,7 +96,7 @@
 								<li class="yui3-u-1-8"><span class="price">{{$v['shop_price']}}</span></li>
 								<li class="yui3-u-1-8">
 									<a href="javascript:void(0)" class="increment mins">-</a>
-									<input autocomplete="off" type="text" value="1" minnum="1" class="itxt" />
+									<input autocomplete="off" type="text" value="{{$v['buy_number']}}" minnum="{{$v['buy_number']}}" class="itxt" />
 									<a href="javascript:void(0)" class="increment plus">+</a>
 								</li>
 								<li class="yui3-u-1-8"><span class="sum">8848.00</span></li>

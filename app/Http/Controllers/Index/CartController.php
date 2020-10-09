@@ -100,7 +100,6 @@ class CartController extends Controller
                 $cart[$k]['goods_attr']=$goods_attr?$goods_attr->toArray():[];
             }
          }
-         // dd($cart);
         return view('index.cart.cart',['cart'=>$cart]);
     }
 }
