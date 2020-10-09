@@ -968,7 +968,7 @@
         $.get('/addcart',{'goods_id':goods_id,'buy_number':buy_number,'goods_attr_id':goods_attr_id},function(res){
             // alert(res);
              if(res.code=='1'){
-                location.href = "/login";
+                location.href = "/login?refer="+location.href;
             }
             if(res.code=='20000' || res.code=='30000' || res.code=='40000' || res.code=='50000'){
                 alert(res.msg);

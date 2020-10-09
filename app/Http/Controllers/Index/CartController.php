@@ -14,8 +14,8 @@ class CartController extends Controller
 {
     public function addcart(Request $request){
         //判断是否登录
-        // $user = session('user_name');
-        $user = '1';
+        $user = session('user_name');
+        // $user = '1';
         if(!$user){
             return json_encode(['code'=>1,'msg'=>'没有登录']);
         }

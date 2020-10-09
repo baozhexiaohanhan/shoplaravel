@@ -105,6 +105,9 @@ class LoginController extends Controller
     public function login(){
         return view('index.login.login');
     }
+    // public function dologin(Request $request)({
+
+    // });
     //执行
     public function logindo(Request $request){
         $user_plone = $request->post('user_plone');
