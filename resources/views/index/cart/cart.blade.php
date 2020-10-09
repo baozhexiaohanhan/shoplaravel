@@ -99,7 +99,7 @@
 									<input autocomplete="off" type="text" value="{{$v['buy_number']}}" minnum="{{$v['buy_number']}}" class="itxt" />
 									<a href="javascript:void(0)" class="increment plus">+</a>
 								</li>
-								<li class="yui3-u-1-8"><span class="sum">8848.00</span></li>
+								<li class="yui3-u-1-8"><span class="sum">{{$v->buy_number}}*{{$v->shop_price}}</span></li>
 								<li class="yui3-u-1-8">
 									<a href="#none">删除</a><br />
 									<a href="#none">移到我的关注</a>
@@ -124,7 +124,7 @@
 				<div class="toolbar">
 					<div class="chosed">已选择<span>0</span>件商品</div>
 					<div class="sumprice">
-						<span><em>总价（不含运费） ：</em><i class="summoney">¥16283.00</i></span>
+						<span><em>总价（不含运费） ：</em><i class="summoney">¥0.00</i></span>
 						<span><em>已节省：</em><i>-¥20.00</i></span>
 					</div>
 					<div class="sumbtn">
@@ -432,7 +432,10 @@
 		})
 		if(cart_id.length){
 			$.get('/getcartprice',{cart_id:cart_id},function(res){
+				if(res.code=='80000'){
+					$('.summoney').text(res.data);
 				
+				}
 			},'json')
 		}
 	})
