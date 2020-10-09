@@ -77,7 +77,7 @@
 						<div class="cart-list">
 							<ul class="goods-list yui3-g">
 								<li class="yui3-u-1-24">
-									<input type="checkbox" name="" id="" value="" />
+									<input type="checkbox" name="" id="" value="{{$v->rec_id}}"  class="cartid" />
 								</li>
 								<li class="yui3-u-11-24">
 									<div class="good-item">
@@ -424,3 +424,16 @@
 </body>
 
 </html>
+<script type="text/javascript">
+	$('.cartid').click(function(){
+		var cart_id = new Array();
+		$('.cartid:checked').each(function(){
+			cart_id.push($(this).val());
+		})
+		if(cart_id.length){
+			$.get('/getcartprice',{cart_id:cart_id},function(res){
+				
+			},'json')
+		}
+	})
+</script>
