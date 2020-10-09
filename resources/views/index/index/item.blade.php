@@ -222,15 +222,15 @@
                         @if($guige)
                         @foreach($guige as $v)
                         <dl>
-								<dt>
-									<div class="fl title">
+                                <dt>
+                                    <div class="fl title">
                                     <i>{{$v['attr_name']}}</i>
-								</div>
+                                </div>
                                 </dt>
-								@php $i=0; @endphp
+                                @php $i=0; @endphp
                                 @foreach($v['attr_value'] as $k=>$v)
-								<dd><a href="javascript:;" @if($i==0) class="selected" @endif goods_attr_id="{{$k}}">{{$v}}<span title="点击取消选择">&nbsp;</span></a></dd>
-								@php $i++; @endphp
+                                <dd><a href="javascript:;" @if($i==0) class="selected" @endif goods_attr_id="{{$k}}">{{$v}}<span title="点击取消选择">&nbsp;</span></a></dd>
+                                @php $i++; @endphp
                                 @endforeach
                             </dl>
                         @endforeach
@@ -920,25 +920,25 @@
         });
 
         $('dd a').click(function(){
-		$(this).parent().siblings().find('a').removeClass('selected');
-		$(this).addClass('selected');
-		getEndprice();
-	});
-	getEndprice();
-	function getEndprice(){
-		var goods_attr_id = new Array();
-		$('.selected').each(function(i){
-			goods_attr_id.push($(this).attr('goods_attr_id'));
-		});
-		if(goods_attr_id.length > 0){
-			var goods_id = $('.goods_id').val();
-			$.get('/getattrprice',{'goods_attr_id':goods_attr_id,'goods_id':goods_id},function(res){
-					$('#price').html(res.data);
-			},'json');
-		}else{
-			return false;
-		}
-	}
+        $(this).parent().siblings().find('a').removeClass('selected');
+        $(this).addClass('selected');
+        getEndprice();
+    });
+    getEndprice();
+    function getEndprice(){
+        var goods_attr_id = new Array();
+        $('.selected').each(function(i){
+            goods_attr_id.push($(this).attr('goods_attr_id'));
+        });
+        if(goods_attr_id.length > 0){
+            var goods_id = $('.goods_id').val();
+            $.get('/getattrprice',{'goods_attr_id':goods_attr_id,'goods_id':goods_id},function(res){
+                    $('#price').html(res.data);
+            },'json');
+        }else{
+            return false;
+        }
+    }
     })
 </script>
 <script type="text/javascript" src="/static/js/model/cartModel.js"></script>
@@ -970,8 +970,13 @@
              if(res.code=='1'){
                 location.href = "/login";
             }
-            if(res.code=='20000' || res.code=='30000' || res.code=='40000' || res.code=='50000' || res.code=='60000'){
+            if(res.code=='20000' || res.code=='30000' || res.code=='40000' || res.code=='50000'){
                 alert(res.msg);
+            }
+            if(res.code=='60000' || res.code=='70000'){
+                if(confirm('亲，要前往购物车列表页面吗')){
+                    location.href = "/cart";
+                }
             }
         },'json');
         // alert(goods_attr_id);
