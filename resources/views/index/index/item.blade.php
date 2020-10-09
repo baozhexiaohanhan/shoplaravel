@@ -24,9 +24,12 @@
             <div class="py-container">
                 <div class="shortcut">
                     <ul class="fl">
-                        <li class="f-item">品优购欢迎您！</li>
-                        <li class="f-item">请<a href="login.html" target="_blank">登录</a>　<span><a href="register.html" target="_blank">免费注册</a></span></li>
-                    </ul>
+                        <ul class="fl">
+                        @if(!session('user_id'))
+                            <li class="f-item">请<a href="{{url('/login')}}" target="_blank">登录</a>　<span><a href="{{url('/reg')}}" target="_blank">免费注册</a></span></li>
+                                @else
+                            <span>欢迎{{session('user_name')}}登录</span></li> <span><a href="{{url('/logout')}}" target="_blank">切换账号</a></span></ul>
+                        @endif</ul>
                     <ul class="fr">
                         <li class="f-item">我的订单</li>
                         <li class="f-item space"></li>

@@ -15,7 +15,7 @@ class CartController extends Controller
     public function addcart(Request $request){
         //判断是否登录
         // $user = session('user_name');
-        $user = '1';
+        $user = session('user_id');
         if(!$user){
             return json_encode(['code'=>1,'msg'=>'没有登录']);
         }
@@ -87,7 +87,20 @@ class CartController extends Controller
     }
     //购物车列表
     public function cart(){
-       
-        return view('index.cart.cart');
+        $user = session('user_id');
+        if(!$user){
+           return redirect('/login');
+        }
+
+         $cart = CartModel::select('ecs_cart.*','ecs_goods.goods_thumb')->leftjoin('ecs_goods','ecs_cart.goods_id','=','ecs_goods.goods_id')->where('user_id',$user)->get();
+         foreach ($cart as $k=>$v){
+            if($v->goods_attr_id){
+                $goods_attr_id = explode('|', $v->goods_attr_id);
+                $goods_attr = Goodsattr::select('attr_name','attr_value')->leftjoin('attribute','ecs_goods_attr.goods_id','=','attribute.attr_id')->whereIn('goods_attr_id',$goods_attr_id)->get();
+                $cart[$k]['goods_attr']=$goods_attr?$goods_attr->toArray():[];
+            }
+         }
+         // dd($cart);
+        return view('index.cart.cart',['cart'=>$cart]);
     }
 }
