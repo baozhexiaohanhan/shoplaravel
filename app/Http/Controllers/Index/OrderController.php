@@ -11,15 +11,29 @@ class OrderController extends Controller
 {
     
     public function confrimorder(Request $request){
-    	$user = session('user_id');
+    	
+        $cart_id  = $request->cart_id;
+        $address  = $request->address;
+        $user = session()->get('user_id');
         if(!$user){
-            return redirect('/login');
+            return redirect('/login');die;
         }
-        $rec_id = $request->rec_id;
         $address = Order::where('user_id',$user)->get();
-       dd($address);
-    return view('index.order.confrimorder');
+        $address = $address?$address->toArray():[];
+        $region = Region::where('parent_id',0)->get();
+
+        return view('index.order.confrimorder',['address'=>$address,'region'=>$region]);
+    }
+
+    public function getsondata(Request $request){
+        $region_id  = $request->region_id; 
+        $region_son = Region::where('parent_id',$region_id)->get();
+    
+        return json_encode(['code'=>0,'msg'=>'OK','data'=>$region_son]);
+        
+
 
     }
+
 
 }

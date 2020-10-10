@@ -106,10 +106,35 @@
 						      		 <div class="control-group">
 									    <label class="control-label">收货人：</label>
 									    <div class="controls">
-									      <input type="text" class="input-medium">
+									      <input type="text" name="consignee" class="input-medium">
 									    </div>
 									  </div>
-									   
+									
+                                    <div class="control-group">
+											<label class="control-label">所在地区：</label>
+											<div class="controls">
+												<tr>
+													<td colspan="3" align="left" bgcolor="#ffffff">
+														<select name="country" id="selCountries_0">
+
+															<option value="0">请选择国家</option>
+															@foreach($region as $v)
+																<option value="{{$v->region_id}}">{{$v->region_name}}</option>
+															@endforeach
+														</select>
+
+														<select name="province" id="selProvinces_0">
+															<option value="0">请选择省</option>
+														</select>
+														<select name="city" id="selCities_0">
+															<option value="0">请选择市</option>
+														</select>
+														<select name="district" id="selDistricts_0">
+															<option value="0">请选择区/县</option>
+														</select>(必填) </td>
+												</tr>
+											</div>
+										</div>
 									   <div class="control-group">
 									    <label class="control-label">详细地址：</label>
 									    <div class="controls">
@@ -380,8 +405,39 @@
 <script type="text/javascript" src="/static/js/plugins/jquery/jquery.min.js"></script>
 <script type="text/javascript" src="/static/js/plugins/jquery.easing/jquery.easing.min.js"></script>
 <script type="text/javascript" src="/static/js/plugins/sui/sui.min.js"></script>
-<script type="text/javascript" src="components/ui-modules/nav/nav-portal-top.js"></script>
+<!-- <script type="text/javascript" src="components/ui-modules/nav/nav-portal-top.js"></script> -->
 <script type="text/javascript" src="/static/js/pages/getOrderInfo.js"></script>
 </body>
+<script type="text/javascript">
+	@if(!count($address))
+	$(function(){
+		$('.sui-modal').addClass('in');
+		$('.sui-modal').css('margin-top','-201px');
+		$('sui-modal-backdrop').show();
+		$('.sui-modal').show();
+	});
+	@endif
 
+	$('select').change(function(){
+		var _this = $(this);
+		var region_id = _this.val();
+		if(region_id<1){
+			_this.nextAll().find('option:gt(0)').remove();
+		}
+		$.get('/getsondata',{region_id:region_id},function(res){
+			if(res.code=='0'){
+				var address = res.data;
+				// alert(address);
+				var str = '<option value="0">--请选择--</option>';
+				for (var i=0;i<address.length;i++) {
+					str += '<option value="'+address[i].region_id+'">'+address[i].region_name+'</option>';
+				}
+				_this.next().html(str);
+			}
+			return;
+
+		},'json');
+	});
+
+</script>
 </html>
