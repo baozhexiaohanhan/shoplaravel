@@ -30,3 +30,4 @@ Route::get('/getcartprice','Index\CartController@getcartprice');//商品价格
 
 Route::get('/getsondata','Index\OrderController@getsondata');//商品价格
 
+Route::post('/store','Index\OrderController@store');//商品价格

@@ -35,5 +35,14 @@ class OrderController extends Controller
 
     }
 
+    public function store(Request $request){
+        $rec_id = $request->rec_id;
+        $post = $request->except('_token');
+        $res = Order::insert($post);
+        if($res){
+              return redirect('/confrimorder');
+        }
+    }
+
 
 }

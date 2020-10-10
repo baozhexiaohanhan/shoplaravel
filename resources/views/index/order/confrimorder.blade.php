@@ -102,7 +102,7 @@
 						        <h4 id="myModalLabel" class="modal-title">添加收货地址</h4>
 						      </div>
 						      <div class="modal-body">
-						      	<form action="" class="sui-form form-horizontal">
+						      	<form action="{{url('/store')}}" method="post" class="sui-form form-horizontal">
 						      		 <div class="control-group">
 									    <label class="control-label">收货人：</label>
 									    <div class="controls">
@@ -138,39 +138,39 @@
 									   <div class="control-group">
 									    <label class="control-label">详细地址：</label>
 									    <div class="controls">
-									      <input type="text" class="input-large">
+									      <input type="text" name="address" class="input-large">
 									    </div>
 									  </div>
 									   <div class="control-group">
 									    <label class="control-label">联系电话：</label>
 									    <div class="controls">
-									      <input type="text" class="input-medium">
+									      <input type="text" name="tel" class="input-medium">
 									    </div>
 									  </div>
 									   <div class="control-group">
 									    <label class="control-label">邮箱：</label>
 									    <div class="controls">
-									      <input type="text" class="input-medium">
+									      <input type="text" name="email" class="input-medium">
 									    </div>
 									  </div>
 									   <div class="control-group">
 									    <label class="control-label">地址别名：</label>
 									    <div class="controls">
-									      <input type="text" class="input-medium">
+									      <input type="text" name="address_name" class="input-medium">
 									    </div>
 									    <div class="othername">
 									    	建议填写常用地址：<a href="#" class="sui-btn btn-default">家里</a>　<a href="#" class="sui-btn btn-default">父母家</a>　<a href="#" class="sui-btn btn-default">公司</a>
 									    </div>
 									  </div>
-									  
+									     <button type="submit" class="sui-btn btn-primary btn-large">确定</button>
+						        <button type="button" class="sui-btn btn-default btn-large">取消</button>
+						      </div>
 						      	</form>
 						      	
 						      	
 						      </div>
 						      <div class="modal-footer">
-						        <button type="button" data-ok="modal" class="sui-btn btn-primary btn-large">确定</button>
-						        <button type="button" data-dismiss="modal" class="sui-btn btn-default btn-large">取消</button>
-						      </div>
+						     
 						    </div>
 						  </div>
 						</div>
