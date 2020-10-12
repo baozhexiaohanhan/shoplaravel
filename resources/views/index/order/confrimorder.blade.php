@@ -17,9 +17,11 @@
 		<div class="py-container">
 			<div class="shortcut">
 				<ul class="fl">
-					<li class="f-item">品优购欢迎您！</li>
-					<li class="f-item">请登录　<span><a href="#">免费注册</a></span></li>
-				</ul>
+                        @if(!session('user_id'))
+                            <li class="f-item">请<a href="{{url('/login')}}" target="_blank">登录</a>　<span><a href="{{url('/reg')}}" target="_blank">免费注册</a></span></li>
+                                @else
+                            <span>欢迎{{session('user_name')}}登录</span></li> <span><a href="{{url('/logout')}}" target="_blank">切换账号</a></span></ul>
+                        @endif</ul>
 				<ul class="fr">
 					<li class="f-item">我的订单</li>
 					<li class="f-item space"></li>
@@ -67,26 +69,16 @@
 							<li class="addr-item">
 							
 							  <div>
-								<div class="con name selected"><a href="javascript:;" >张默<span title="点击取消选择">&nbsp;</a></div>
-								<div class="con address">张默 北京市海淀区三环内 中关村软件园9号楼 <span>159****3201</span>
+								@foreach($jyl as $k=>$vv)
+							  <div>
+								<div class="con name selected"><a href="javascript:;" >{{$vv->consignee}}<span title="点击取消选择">&nbsp;</a></div>
+								<div class="con address">{{$vv->consignee}}   {{$vv->country}}{{$vv->province}}{{$vv->city}}{{$vv->district}} <span>{{$vv->tel}}</span>
 									<span class="base">默认地址</span>
 									<span class="edittext"><a data-toggle="modal" data-target=".edit" data-keyboard="false" >编辑</a>&nbsp;&nbsp;<a href="javascript:;">删除</a></span>
 								</div>
 								<div class="clearfix"></div>
 							  </div>
-							  <div>
-								<div class="con name"><a href="javascript:;">李煜<span title="点击取消选择">&nbsp;</a></div>
-								<div class="con address">李煜 北京市海淀区三环内 中关村软件园8号楼 <span>187****4201</span>
-								<span class="edittext"><a data-toggle="modal" data-target=".edit" data-keyboard="false" >编辑</a>&nbsp;&nbsp;<a href="javascript:;">删除</a></span>
-								</div>
-								<div class="clearfix"></div>
-							  </div>
-							  
-							  <div>
-								<div class="con name"><a href="javascript:;">王希<span title="点击取消选择">&nbsp;</a></div>
-								<div class="con address">王希 北京市海淀区三环内 中关村软件园6号楼  <span>156****5681</span>
-								<span class="edittext"><a data-toggle="modal" data-target=".edit" data-keyboard="false" >编辑</a>&nbsp;&nbsp;<a href="javascript:;">删除</a></span>
-								</div>
+							  @endforeach
 								<div class="clearfix"></div>
 							  </div>
 							</li>

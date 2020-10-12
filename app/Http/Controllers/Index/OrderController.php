@@ -21,8 +21,17 @@ class OrderController extends Controller
         $address = Order::where('user_id',$user)->get();
         $address = $address?$address->toArray():[];
         $region = Region::where('parent_id',0)->get();
+        $jyl = Order::where('user_id',$user)->get();
+        $reg = new Region;
+        foreach($jyl as $k=>$v){
+            $jyl[$k]['country'] = $reg->where('region_id',$v->country)->value('region_name'); 
+            $jyl[$k]['province'] = $reg->where('region_id',$v->province)->value('region_name');
+            $jyl[$k]['city'] = $reg->where('region_id',$v->city)->value('region_name');
+            $jyl[$k]['district'] = $reg->where('region_id',$v->district)->value('region_name');
+            $jyl[$k]['tel'] = substr($v->tel,0,3)."****".substr($v->tel,7,4);
+        }
+        return view('index.order.confrimorder',['address'=>$address,'region'=>$region,'jyl'=>$jyl]);
 
-        return view('index.order.confrimorder',['address'=>$address,'region'=>$region]);
     }
 
     public function getsondata(Request $request){
@@ -40,7 +49,7 @@ class OrderController extends Controller
         $post = $request->except('_token');
         $res = Order::insert($post);
         if($res){
-              return redirect('/confrimorder');
+             return  redirect('/confrimorder');
         }
     }
 
