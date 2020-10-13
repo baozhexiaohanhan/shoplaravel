@@ -69,7 +69,7 @@
 							<li class="addr-item">
 							
 							  <div>
-								@foreach($jyl as $k=>$vv)
+								@foreach($zxp as $k=>$vv)
 							  <div>
 								<div class="con name selected"><a href="javascript:;" >{{$vv->consignee}}<span title="点击取消选择">&nbsp;</a></div>
 								<div class="con address">{{$vv->consignee}}   {{$vv->country}}{{$vv->province}}{{$vv->city}}{{$vv->district}} <span>{{$vv->tel}}</span>
@@ -187,36 +187,41 @@
 					<div class="step-tit">
 						<h5>送货清单</h5>
 					</div>
-					<div class="step-cont">
+				<div class="step-cont">
 						<ul class="send-detail">
 							<li>
 								
 								<div class="sendGoods">
-									
+									@foreach($cart as $k=>$v)
 									<ul class="yui3-g">
 										<li class="yui3-u-1-6">
-											<span><img src="/static/img/goods.png"/></span>
+											<span><img src="{{$v->goods_thumb}}"/></span>
 										</li>
 										<li class="yui3-u-7-12">
-											<div class="desc">Apple iPhone 6s (A1700) 64G 玫瑰金色 移动联通电信4G手机硅胶透明防摔软壳 本色系列</div>
+										<div class="item-msg">{{$v->goods_name}}<br>
+											@if(isset($v['goods_attr']))
+												@foreach($v['goods_attr'] as $vv)
+													{{$vv['attr_name']}}:{{$vv['attr_value']}}
+												@endforeach
+											@endif
+										</div>
 											<div class="seven">7天无理由退货</div>
 										</li>
 										<li class="yui3-u-1-12">
-											<div class="price">￥5399.00</div>
+											<div class="price">{{$v->shop_price}}</div>
 										</li>
 										<li class="yui3-u-1-12">
-											<div class="num">X1</div>
+											<div class="num">X{{$v->buy_number}}</div>
 										</li>
 										<li class="yui3-u-1-12">
 											<div class="exit">有货</div>
 										</li>
 									</ul>
+									@endforeach
 								</div>
-							</li>
-							<li></li>
-							<li></li>
 						</ul>
 					</div>
+
 					<div class="hr"></div>
 				</div>
 				<div class="linkInfo">
