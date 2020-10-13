@@ -40,6 +40,7 @@
 			</div>
 		</div>
 	</div>
+		<form action="/order" method="post">
 	<div class="cart py-container">
 		<!--logoArea-->
 		<div class="logoArea">
@@ -67,20 +68,16 @@
 					<div class="addressInfo">
 						<ul class="addr-detail">
 							<li class="addr-item">
-							
-							  <div>
-								@foreach($zxp as $k=>$vv)
+							@foreach($zxp as $k=>$vv)
 							  <div>
 								<div class="con name selected"><a href="javascript:;" >{{$vv->consignee}}<span title="点击取消选择">&nbsp;</a></div>
-								<div class="con address">{{$vv->consignee}}   {{$vv->country}}{{$vv->province}}{{$vv->city}}{{$vv->district}} <span>{{$vv->tel}}</span>
+								<div class="con address"><input type="hidden" name="field＿name" value="value"> <font color="red">{{$vv->consignee}}   {{$vv->country}}{{$vv->province}}{{$vv->city}}{{$vv->district}} <span>{{$vv->tel}}</span></font>
 									<span class="base">默认地址</span>
 									<span class="edittext"><a data-toggle="modal" data-target=".edit" data-keyboard="false" >编辑</a>&nbsp;&nbsp;<a href="javascript:;">删除</a></span>
 								</div>
 								<div class="clearfix"></div>
 							  </div>
 							  @endforeach
-								<div class="clearfix"></div>
-							  </div>
 							</li>
 							
 							
@@ -94,7 +91,7 @@
 						        <h4 id="myModalLabel" class="modal-title">添加收货地址</h4>
 						      </div>
 						      <div class="modal-body">
-						      	<form action="{{url('/store')}}" method="post" class="sui-form form-horizontal">
+						      	<form action="{{url('/store')}}" method="get" class="sui-form form-horizontal">
 						      		 <div class="control-group">
 									    <label class="control-label">收货人：</label>
 									    <div class="controls">
@@ -108,7 +105,6 @@
 												<tr>
 													<td colspan="3" align="left" bgcolor="#ffffff">
 														<select name="country" id="selCountries_0">
-
 															<option value="0">请选择国家</option>
 															@foreach($region as $v)
 																<option value="{{$v->region_id}}">{{$v->region_name}}</option>
@@ -148,21 +144,22 @@
 									   <div class="control-group">
 									    <label class="control-label">地址别名：</label>
 									    <div class="controls">
-									      <input type="text" name="address_name" class="input-medium">
+									      <input type="text" name="zipcode" class="input-medium">
 									    </div>
 									    <div class="othername">
 									    	建议填写常用地址：<a href="#" class="sui-btn btn-default">家里</a>　<a href="#" class="sui-btn btn-default">父母家</a>　<a href="#" class="sui-btn btn-default">公司</a>
 									    </div>
 									  </div>
-									     <button type="submit" class="sui-btn btn-primary btn-large">确定</button>
-						        <button type="button" class="sui-btn btn-default btn-large">取消</button>
+									  <div class="modal-footer">
+						        <!-- <button type="submit" data-ok="modal" class="sui-btn btn-primary btn-large">确定</button> -->
+                                <input type="submit" class="sui-btn btn-primary btn-large" value="确定">
+						        <button type="button" data-dismiss="modal" class="sui-btn btn-default btn-large">取消</button>
 						      </div>
 						      	</form>
 						      	
-						      	
+						    
 						      </div>
-						      <div class="modal-footer">
-						     
+						      
 						    </div>
 						  </div>
 						</div>
@@ -187,12 +184,13 @@
 					<div class="step-tit">
 						<h5>送货清单</h5>
 					</div>
-				<div class="step-cont">
+					<div class="step-cont">
 						<ul class="send-detail">
 							<li>
 								
 								<div class="sendGoods">
 									@foreach($cart as $k=>$v)
+									<input type="hidden" name="goods_id" value="{{$v->goods_id}}"> 
 									<ul class="yui3-g">
 										<li class="yui3-u-1-6">
 											<span><img src="{{$v->goods_thumb}}"/></span>
@@ -219,9 +217,11 @@
 									</ul>
 									@endforeach
 								</div>
+							</li>
+							<li></li>
+							<li></li>
 						</ul>
 					</div>
-
 					<div class="hr"></div>
 				</div>
 				<div class="linkInfo">
@@ -262,9 +262,10 @@
 			<div class="fc-receiverInfo">寄送至:北京市海淀区三环内 中关村软件园9号楼 收货人：某某某 159****3201</div>
 		</div>
 		<div class="submit">
-			<a class="sui-btn btn-danger btn-xlarge" href="pay.html">提交订单</a>
+			<button class="sui-btn btn-danger btn-xlarge" type="submit">提交订单</button>
 		</div>
 	</div>
+	</form>
 	<!-- 底部栏位 -->
 	<!--页面底部-->
 <div class="clearfix footer">

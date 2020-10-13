@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\Index;
 
 use App\Http\Controllers\Controller;
@@ -46,11 +45,8 @@ class OrderController extends Controller
     public function getsondata(Request $request){
         $region_id  = $request->region_id; 
         $region_son = Region::where('parent_id',$region_id)->get();
-    
         return json_encode(['code'=>0,'msg'=>'OK','data'=>$region_son]);
         
-
-
     }
 
     public function store(Request $request){
@@ -60,6 +56,11 @@ class OrderController extends Controller
         if($res){
              return  redirect('/confrimorder');
         }
+    }
+
+    public function order(Request $request){
+        $data =$request->except('_token');
+        dd($data);
     }
 
 
