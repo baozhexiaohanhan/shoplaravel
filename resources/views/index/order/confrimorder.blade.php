@@ -17,11 +17,9 @@
 		<div class="py-container">
 			<div class="shortcut">
 				<ul class="fl">
-                        @if(!session('user_id'))
-                            <li class="f-item">请<a href="{{url('/login')}}" target="_blank">登录</a>　<span><a href="{{url('/reg')}}" target="_blank">免费注册</a></span></li>
-                                @else
-                            <span>欢迎{{session('user_name')}}登录</span></li> <span><a href="{{url('/logout')}}" target="_blank">切换账号</a></span></ul>
-                        @endif</ul>
+					<li class="f-item">品优购欢迎您！</li>
+					<li class="f-item">请登录　<span><a href="#">免费注册</a></span></li>
+				</ul>
 				<ul class="fr">
 					<li class="f-item">我的订单</li>
 					<li class="f-item space"></li>
@@ -41,6 +39,13 @@
 		</div>
 	</div>
 		<form action="/order" method="post">
+		<input type="hidden" name="address_id">
+		<input type="hidden" name="pay_type">
+		<input type="hidden" name="allprice">
+		<input type="hidden" name="deal_price">
+		<input type="hidden" name="cartadd" value="{{$cartadd}}">
+
+
 	<div class="cart py-container">
 		<!--logoArea-->
 		<div class="logoArea">
@@ -70,8 +75,8 @@
 							<li class="addr-item">
 							@foreach($zxp as $k=>$vv)
 							  <div>
-								<div class="con name selected"><a href="javascript:;" >{{$vv->consignee}}<span title="点击取消选择">&nbsp;</a></div>
-								<div class="con address"><input type="hidden" name="field＿name" value="value"> <font color="red">{{$vv->consignee}}   {{$vv->country}}{{$vv->province}}{{$vv->city}}{{$vv->district}} <span>{{$vv->tel}}</span></font>
+								<div class="con name"><a href="javascript:;" address_id="{{$vv->address_id}}" >{{$vv->consignee}}<span title="点击取消选择">&nbsp;</a></div>
+								<div class="con address">{{$vv->consignee}}   {{$vv->country}}{{$vv->province}}{{$vv->city}}{{$vv->district}} <span>{{$vv->tel}}</span>
 									<span class="base">默认地址</span>
 									<span class="edittext"><a data-toggle="modal" data-target=".edit" data-keyboard="false" >编辑</a>&nbsp;&nbsp;<a href="javascript:;">删除</a></span>
 								</div>
@@ -82,7 +87,115 @@
 							
 							
 						</ul>
-						<!--添加地址-->
+						
+					</div>
+					<div class="hr"></div>
+					
+				</div>
+				<div class="hr"></div>
+				<!--支付和送货-->
+				<div class="payshipInfo">
+					<div class="step-tit">
+						<h5>支付方式</h5>
+					</div>
+					<div class="step-cont">
+						<ul class="payType">
+							<li value="1">微信付款<span title="点击取消选择"></span></li>
+							<li value="2">在线支付<span title="点击取消选择"></span></li>
+							<li value="3">支付宝<span title="点击取消选择"></span></li>
+							<li value="4">货到付款<span title="点击取消选择"></span></li>
+						</ul>
+					</div>
+					<div class="hr"></div>
+					<div class="step-tit">
+						<h5>送货清单</h5>
+					</div>
+					<div class="step-cont">
+						<ul class="send-detail">
+							<li>
+								
+								<div class="sendGoods">
+
+									@foreach($cart as $k=>$v)
+
+									<ul class="yui3-g">
+										<li class="yui3-u-1-6">
+											<span><img src="{{$v->goods_thumb}}"/></span>
+										</li>
+										<li class="yui3-u-7-12">
+										<div class="item-msg">{{$v->goods_name}}<br>
+											@if(isset($v['goods_attr']))
+												@foreach($v['goods_attr'] as $vv)
+													{{$vv['attr_name']}}:{{$vv['attr_value']}}
+												@endforeach
+											@endif
+										</div>
+											<div class="seven">7天无理由退货</div>
+										</li>
+										<li class="yui3-u-1-12">
+											<div class="price">{{$v->shop_price}}</div>
+										</li>
+										<li class="yui3-u-1-12">
+											<div class="num">X1</div>
+										</li>
+										<li class="yui3-u-1-12">
+											<div class="exit">有货</div>
+										</li>
+									</ul>
+									@endforeach
+
+								</div>
+							</li>
+							<li></li>
+							<li></li>
+						</ul>
+					</div>
+					<div class="hr"></div>
+				</div>
+				<div class="linkInfo">
+					<div class="step-tit">
+						<h5>发票信息</h5>
+					</div>
+					<div class="step-cont">
+						<span>普通发票（电子）</span>
+						<span>个人</span>
+						<span>明细</span>
+					</div>
+				</div>
+				<div class="cardInfo">
+					<div class="step-tit">
+						<h5>使用优惠/抵用</h5>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="order-summary">
+			<div class="static fr">
+				<div class="list">
+
+					<span><i class="number">{{$count}}</i>件商品，总商品金额</span>
+					<em class="allprice">¥{{$price[0]->total}}</em>
+				</div>
+				<div class="list">
+					<span>返现：</span>
+					<em class="money">0.00</em>
+				</div>
+				<div class="list">
+					<span>运费：</span>
+					<em class="transport">0.00</em>
+				</div>
+			</div>
+		</div>
+		<div class="clearfix trade">
+			<div class="fc-price">应付金额:　<span class="deal_price">¥{{$price[0]->total}}</span></div>
+			<div class="fc-receiverInfo">寄送至:北京市海淀区三环内 中关村软件园9号楼 收货人：某某某 159****3201</div>
+		</div>
+		<div class="submit">
+			<button class="sui-btn btn-danger btn-xlarge" type="submit">提交订单</button>
+		</div>
+	</div>
+	</form>
+	<!--添加地址-->
                           <div  tabindex="-1" role="dialog" data-hasfoot="false" class="sui-modal hide fade edit">
 						  <div class="modal-dialog">
 						    <div class="modal-content">
@@ -135,6 +248,8 @@
 									      <input type="text" name="tel" class="input-medium">
 									    </div>
 									  </div>
+
+
 									   <div class="control-group">
 									    <label class="control-label">邮箱：</label>
 									    <div class="controls">
@@ -164,108 +279,6 @@
 						  </div>
 						</div>
 						 <!--确认地址-->
-					</div>
-					<div class="hr"></div>
-					
-				</div>
-				<div class="hr"></div>
-				<!--支付和送货-->
-				<div class="payshipInfo">
-					<div class="step-tit">
-						<h5>支付方式</h5>
-					</div>
-					<div class="step-cont">
-						<ul class="payType">
-							<li class="selected">微信付款<span title="点击取消选择"></span></li>
-							<li>货到付款<span title="点击取消选择"></span></li>
-						</ul>
-					</div>
-					<div class="hr"></div>
-					<div class="step-tit">
-						<h5>送货清单</h5>
-					</div>
-					<div class="step-cont">
-						<ul class="send-detail">
-							<li>
-								
-								<div class="sendGoods">
-									@foreach($cart as $k=>$v)
-									<input type="hidden" name="goods_id" value="{{$v->goods_id}}"> 
-									<ul class="yui3-g">
-										<li class="yui3-u-1-6">
-											<span><img src="{{$v->goods_thumb}}"/></span>
-										</li>
-										<li class="yui3-u-7-12">
-										<div class="item-msg">{{$v->goods_name}}<br>
-											@if(isset($v['goods_attr']))
-												@foreach($v['goods_attr'] as $vv)
-													{{$vv['attr_name']}}:{{$vv['attr_value']}}
-												@endforeach
-											@endif
-										</div>
-											<div class="seven">7天无理由退货</div>
-										</li>
-										<li class="yui3-u-1-12">
-											<div class="price">{{$v->shop_price}}</div>
-										</li>
-										<li class="yui3-u-1-12">
-											<div class="num">X{{$v->buy_number}}</div>
-										</li>
-										<li class="yui3-u-1-12">
-											<div class="exit">有货</div>
-										</li>
-									</ul>
-									@endforeach
-								</div>
-							</li>
-							<li></li>
-							<li></li>
-						</ul>
-					</div>
-					<div class="hr"></div>
-				</div>
-				<div class="linkInfo">
-					<div class="step-tit">
-						<h5>发票信息</h5>
-					</div>
-					<div class="step-cont">
-						<span>普通发票（电子）</span>
-						<span>个人</span>
-						<span>明细</span>
-					</div>
-				</div>
-				<div class="cardInfo">
-					<div class="step-tit">
-						<h5>使用优惠/抵用</h5>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="order-summary">
-			<div class="static fr">
-				<div class="list">
-					<span><i class="number">1</i>件商品，总商品金额</span>
-					<em class="allprice">¥5399.00</em>
-				</div>
-				<div class="list">
-					<span>返现：</span>
-					<em class="money">0.00</em>
-				</div>
-				<div class="list">
-					<span>运费：</span>
-					<em class="transport">0.00</em>
-				</div>
-			</div>
-		</div>
-		<div class="clearfix trade">
-			<div class="fc-price">应付金额:　<span class="price">¥5399.00</span></div>
-			<div class="fc-receiverInfo">寄送至:北京市海淀区三环内 中关村软件园9号楼 收货人：某某某 159****3201</div>
-		</div>
-		<div class="submit">
-			<button class="sui-btn btn-danger btn-xlarge" type="submit">提交订单</button>
-		</div>
-	</div>
-	</form>
 	<!-- 底部栏位 -->
 	<!--页面底部-->
 <div class="clearfix footer">
@@ -406,6 +419,7 @@
 <!-- <script type="text/javascript" src="components/ui-modules/nav/nav-portal-top.js"></script> -->
 <script type="text/javascript" src="/static/js/pages/getOrderInfo.js"></script>
 </body>
+<script scr="static/jquery.min.js"></script>
 <script type="text/javascript">
 	@if(!count($address))
 	$(function(){
@@ -433,9 +447,49 @@
 				_this.next().html(str);
 			}
 			return;
-
 		},'json');
 	});
+	 $(function(){
+		$('.name:eq(0)').addClass('selected');
+		 var address_id = $(".name").find('a').attr('address_id');
+		//  var_dump(address_id);
+    	$('input[name="address_id"]').val(address_id);
+    	$('.payType li:eq(0)').addClass('selected');
+		var pay_type = $('.payType li:eq(0)').val();
+		 $('input[name="pay_type"]').val(pay_type);
+		 var allprice = $('.allprice').html();
+		 allprice = allprice.substr(1);
+		//  alert(allprice);
+		 $('input[name="allprice"]').val(allprice);
+		  var deal_price = $('.deal_price').html();
+		 deal_price = deal_price.substr(2);
+		//  alert(deal_price);
+		 $('input[name="deal_price"]').val(deal_price);
 
+
+       });
+	   $(function(){
+	$(".address").hover(function(){
+		$(this).addClass("address-hover");	
+	},function(){
+		$(this).removeClass("address-hover");	
+	});
+})
+
+$(function(){
+	$(".name").click(function(){
+		var _this = $(this);
+        var address_id = _this.find('a').attr('address_id');
+    	_this.addClass('selected');
+    	_this.parent().siblings().find('.name').removeClass('selected');
+    	$('input[name="address_id"]').val(address_id);
+	});
+	$(".payType li").click(function(){
+		 $(this).addClass('selected');
+		 $(this).siblings().removeClass('selected');
+		 var pay_type = $(this).val();
+		 $('input[name="pay_type"]').val(pay_type);
+	});
+})
 </script>
 </html>
