@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Model\Category;
 use App\Model\BrandModel;
 use App\Model\Goodsattr;
+use Illuminate\Support\Facades\Redis;
 class IndexController extends Controller
 {
     public function index(){
@@ -129,19 +130,32 @@ class IndexController extends Controller
                 ];
             }
         }
+       
         //根据品牌搜索
         if(isset($query['brand_id'])){
             $where[] = [
                 'brand_id','=',$query['brand_id']
             ];
         }
-
-        //查询分类
-        $zbc = Category::where('parent_id',$cat_id)->pluck('cat_id');
+        $page = $query['page']??1;
+          $zbc = Category::where('parent_id',$cat_id)->pluck('cat_id');
         $zbc = $zbc?$zbc->toArray():[];
         array_push($zbc,$cat_id);
+            // Redis::del('goods');
+            $goods = Redis::get('serch_'.$cat_id.'_'.$page);
+          //  dd($goods);
+       // dump('serch_'.$cat_id.'_'.$page);
+             if(!$goods){
+                echo '缓存';
+        //查询分类
+      
         //根据分类查商品
-        $goods = GoodsModel::where($where)->where('is_on_sale',1)->whereIn('cat_id',$zbc)->paginate(10);
+        $goods = GoodsModel::where($where)->where('is_on_sale',1)->whereIn('cat_id',$zbc)->paginate(1);
+            $goods = serialize($goods);
+            Redis::setex('serch_'.$cat_id.'_'.$page,5,$goods);
+    }
+        $goods = unserialize($goods);
+    // dd($goods);
         //根据商品查询品牌
         $branda = GoodsModel::where('is_on_sale',1)->whereIn('cat_id',$zbc)->pluck('brand_id');
 //        dd($branda);
