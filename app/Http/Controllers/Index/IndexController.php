@@ -30,7 +30,10 @@ class IndexController extends Controller
 
     //推荐详情
     public function item($goods_id){
-          //属性
+        //统计点击属性
+        $hits = Redis::zincrby('item_',1,'item_'.$goods_id);
+        //取最高的5条
+      
         $attr = $this->putattr($goods_id);
         //简介
         $jianjie = $this->jianjie($goods_id);
@@ -39,7 +42,7 @@ class IndexController extends Controller
         $goods=GoodsModel::where('goods_id',$goods_id)->get()->toArray();
         $good = GoodsModel::orderBy('goods_id','desc')->limit(5)->get()->toArray();
         $goo = GoodsModel::where('goods_id',$goods_id)->get()->toArray();
-        return view('index.index.item',['goods'=>$goods,'good'=>$good,'goo'=>$goo,'attr'=>$attr,'jianjie'=>$jianjie,'guige'=>$guige]);
+        return view('index.index.item',['goods'=>$goods,'good'=>$good,'goo'=>$goo,'attr'=>$attr,'jianjie'=>$jianjie,'guige'=>$guige,'hits'=>$hits]);
     }
       //属性
 
@@ -165,9 +168,18 @@ class IndexController extends Controller
         $shop_price = GoodsModel::where('is_on_sale',1)->whereIn('cat_id',$zbc)->max('shop_price');
 //        dd($shop_price);
         $price = $this->getprice($shop_price);
-
         $url = 'http://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
-        return view('index.goods.serch',compact('goods','brand','url','price'));
+          $sj = Redis::zrevrange('item_',0,3);
+        if($sj){
+            $hit_goods_id=[];
+            foreach($sj as $v){
+                $hitsarr = explode('_', $v);
+                $hit_goods_id[]=$hitsarr[1];
+            }
+                $hot_goods = GoodsModel::whereIn('goods_id',$hit_goods_id)->get();
+          //属性
+        }
+        return view('index.goods.serch',compact('goods','brand','url','price','hot_goods'));
     }
     public function getprice($shop_price){
         $len = strlen($shop_price);

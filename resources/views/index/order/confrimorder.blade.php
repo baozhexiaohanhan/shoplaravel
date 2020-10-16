@@ -204,7 +204,7 @@
 						        <h4 id="myModalLabel" class="modal-title">添加收货地址</h4>
 						      </div>
 						      <div class="modal-body">
-						      	<form action="{{url('/store')}}" method="get" class="sui-form form-horizontal">
+						      	<form action="{{url('/store')}}" method="post" class="sui-form form-horizontal">
 						      		 <div class="control-group">
 									    <label class="control-label">收货人：</label>
 									    <div class="controls">

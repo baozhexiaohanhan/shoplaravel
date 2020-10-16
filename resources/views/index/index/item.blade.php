@@ -187,7 +187,7 @@
                             <span>降价通知</span>
                         </div>
                         <div class="fr remark">
-                            <i>累计评价</i><em>612188</em>
+                            <i>点击次数</i><em>{{$hits}}</em>
                         </div>
                     </div>
                     <div class="summary-wrap">

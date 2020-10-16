@@ -17,6 +17,7 @@ class CartController extends Controller
         //判断是否登录
         // $user = session('user_name');
         $user = session('user_id');
+        // dd($user);
         if(!$user){
             return json_encode(['code'=>1,'msg'=>'没有登录']);
         }
