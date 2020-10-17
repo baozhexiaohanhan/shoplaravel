@@ -144,7 +144,7 @@ class IndexController extends Controller
           $zbc = Category::where('parent_id',$cat_id)->pluck('cat_id');
         $zbc = $zbc?$zbc->toArray():[];
         array_push($zbc,$cat_id);
-            // Redis::del('goods');
+            Redis::del('goods');
             $goods = Redis::get('serch_'.$cat_id.'_'.$page);
           //  dd($goods);
        // dump('serch_'.$cat_id.'_'.$page);
@@ -179,6 +179,7 @@ class IndexController extends Controller
                 $hot_goods = GoodsModel::whereIn('goods_id',$hit_goods_id)->get();
           //属性
         }
+        
         return view('index.goods.serch',compact('goods','brand','url','price','hot_goods'));
     }
     public function getprice($shop_price){
