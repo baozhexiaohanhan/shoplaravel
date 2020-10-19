@@ -184,7 +184,7 @@ class IndexController extends Controller
     }
     public function getprice($shop_price){
         $len = strlen($shop_price);
-//        dd($len);
+       // dd($len);
         $for = '1'.str_repeat(0,$len-4);
         $maxprice = substr($shop_price,0,1);
         $maxprice = $maxprice*$for;

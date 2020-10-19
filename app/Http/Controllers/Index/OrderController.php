@@ -9,6 +9,8 @@ use App\Model\Goodsattr;
 use App\Model\CartModel;
 use App\Model\OrderinfoModel;
 use App\Model\OrdergoodsModel;
+use App\Model\ProductModel;
+use App\Model\GoodsModel;
 use DB;
 
 class OrderController extends Controller
@@ -134,7 +136,7 @@ public function order(Request $request){
 
             //查询订单商品数据
             $cart = CartModel::whereIn('rec_id',$cartadd)->get();
-                    // dd($cart);
+            dd($cart);
                 //组合订单商品数据
                 $data = [];
                 foreach ($cart as $k => $v) {
@@ -150,6 +152,16 @@ public function order(Request $request){
                     $ret = OrdergoodsModel::insert($data);
                 }
 
+
+                // if($cart){
+                //     //减库存
+                //     foreach($cartadd as $k=>$v){
+                //         if($v['goods_attr_id']){
+                //             ProductModel::where('product_id',$v['product_id'])->decrement('product_number',$v['buy_number']);
+                //         }
+                //         GoodsModel::where('goods_id',$v['goods_id'])->decrement('goods_number',$v['buy_number']);
+                //     }
+                // }
                 DB::commit();
                     
                 return redirect('/pay/'.$order_id);
