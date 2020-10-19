@@ -15,26 +15,19 @@ use DB;
 
 class OrderController extends Controller
 {
-    
-    public function confrimorder(Request $request){
-    	$rec_id = $request->rec_id?explode(',',$request->rec_id):[];
+public function confrimorder(Request $request){
         $cart_id  = $request->cart_id;
+        // dd($cart_id);
         $address  = $request->address;
-        $user = session()->get('user_id');
+        $user = session('user_id');
+
         if(!$user){
-            return redirect('/login');die;
+            return redirect('login');
         }
-        $cart = CartModel::select('ecs_cart.*','ecs_goods.goods_thumb')->leftjoin('ecs_goods','ecs_cart.goods_id','=','ecs_goods.goods_id')->whereIn('rec_id',$rec_id)->get();
-         foreach ($cart as $k=>$v){
-            if($v->goods_attr_id){
-                $goods_attr_id = explode('|', $v->goods_attr_id);
-                $goods_attr = Goodsattr::select('attr_name','attr_value')->leftjoin('attribute','ecs_goods_attr.goods_id','=','attribute.attr_id')->whereIn('goods_attr_id',$goods_attr_id)->get();
-                $cart[$k]['goods_attr']=$goods_attr?$goods_attr->toArray():[];
-            }
-         }
         $address = Order::where('user_id',$user)->get();
         $address = $address?$address->toArray():[];
         $region = Region::where('parent_id',0)->get();
+
         $zxp = Order::where('user_id',$user)->get();
         $reg = new Region;
         foreach($zxp as $k=>$v){
@@ -44,8 +37,8 @@ class OrderController extends Controller
             $zxp[$k]['district'] = $reg->where('region_id',$v->district)->value('region_name');
             $zxp[$k]['tel'] = substr($v->tel,0,3)."****".substr($v->tel,7,4);
         }
-         $rec_id = explode(',',$request->rec_id);
-         $cart = CartModel::select('ecs_cart.*','ecs_goods.goods_thumb')->leftjoin('ecs_goods','ecs_cart.goods_id','=','ecs_goods.goods_id')->whereIn('rec_id',$rec_id)->get();
+        $cart_id = explode(',',$request->cart_id);
+         $cart = CartModel::select('ecs_cart.*','ecs_goods.goods_thumb')->leftjoin('ecs_goods','ecs_cart.goods_id','=','ecs_goods.goods_id')->whereIn('cart_id',$cart_id)->get();
         // dd($cart);
         foreach($cart as $k=>$v){
             if($v->goods_attr_id){
@@ -54,19 +47,23 @@ class OrderController extends Controller
                 $cart[$k]['goods_attr'] = $Goods_attr?$Goods_attr->toArray():[];
             }
         }
+        
         $cartData = CartModel::select('ecs_goods.goods_id','ecs_goods.goods_name','ecs_goods.shop_price','ecs_goods.goods_thumb','ecs_cart.buy_number')
                     ->leftjoin('ecs_goods','ecs_cart.goods_id','=','ecs_goods.goods_id')
                     ->where(['user_id'=>$user,'is_on_sale'=>1])
-                    ->whereIn('ecs_cart.rec_id',$rec_id)
+                    ->whereIn('ecs_cart.cart_id',$cart_id)
                     ->get();
          $price = DB::select("select SUM(shop_price*buy_number) as total FROM ecs_cart");
         //   var_dump($price);exit;
-          $cartadd = implode(',',$rec_id);
+          $cartadd = implode(',',$cart_id);
         //   dd($cartadd);
          $count = count($cartData);
-        return view('index.order.confrimorder',['address'=>$address,'region'=>$region,'zxp'=>$zxp,'cart'=>$cart,'cart'=>$cart,'count'=>$count,'price'=>$price,'cartadd'=>$cartadd]);
-
+        return view('index.order.confrimorder',['address'=>$address,'region'=>$region,'zxp'=>$zxp,'cart'=>$cart,'count'=>$count,'price'=>$price,'cartadd'=>$cartadd]);
     }
+
+
+
+
 
     public function getsondata(Request $request){
         $region_id  = $request->region_id; 
@@ -76,7 +73,7 @@ class OrderController extends Controller
     }
 
     public function store(Request $request){
-        $rec_id = $request->rec_id;
+        $cart_id = $request->cart_id;
         $post = $request->except('_token');
         $res = Order::insert($post);
         if($res){
@@ -135,8 +132,8 @@ public function order(Request $request){
             $order_id = OrderinfoModel::insertGetId($data);
 
             //查询订单商品数据
-            $cart = CartModel::whereIn('rec_id',$cartadd)->get();
-            dd($cart);
+            $cart = CartModel::whereIn('cart_id',$cartadd)->get();
+                    // dd($cart);
                 //组合订单商品数据
                 $data = [];
                 foreach ($cart as $k => $v) {
@@ -150,18 +147,20 @@ public function order(Request $request){
                     $data[$k]['goods_attr_id'] = $v->goods_attr_id?$v->goods_attr_id:'';
                     //订单商品入库
                     $ret = OrdergoodsModel::insert($data);
+                        // dd($ret);
+                    if($ret){
+                        CartModel::destroy($cartadd);
+                        //减库存
+                        foreach($data as $k=>$v){
+                            if($v['goods_attr_id']){
+                                ProductModel::where('product_id',$v['product_id'])->decrement('product_number',$v['buy_number']);
+                            }
+                            GoodsModel::where('goods_id',$v['goods_id'])->decrement('goods_number',$v['buy_number']);
+                        }
+                    }
+
                 }
 
-
-                // if($cart){
-                //     //减库存
-                //     foreach($cartadd as $k=>$v){
-                //         if($v['goods_attr_id']){
-                //             ProductModel::where('product_id',$v['product_id'])->decrement('product_number',$v['buy_number']);
-                //         }
-                //         GoodsModel::where('goods_id',$v['goods_id'])->decrement('goods_number',$v['buy_number']);
-                //     }
-                // }
                 DB::commit();
                     
                 return redirect('/pay/'.$order_id);

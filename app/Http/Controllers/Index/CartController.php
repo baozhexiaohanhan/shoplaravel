@@ -112,7 +112,7 @@ class CartController extends Controller
             return json_encode(['code'=>70000,'msg'=>'error','data'=>'0.00']);
         }
         $cart_id = implode(',',$cart_id);
-        $total = DB::select("select sum(shop_price*buy_number) as total from ecs_cart where rec_id in ($cart_id)");
+        $total = DB::select("select sum(shop_price*buy_number) as total from ecs_cart where cart_id in ($cart_id)");
         $total = $total?$total[0]->total:0;
          return json_encode(['code'=>80000,'msg'=>'OK','data'=>$total]);
 

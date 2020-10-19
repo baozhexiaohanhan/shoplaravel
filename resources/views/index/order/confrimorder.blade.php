@@ -187,7 +187,7 @@
 			</div>
 		</div>
 		<div class="clearfix trade">
-			<div class="fc-price">应付金额:　<span class="deal_price">¥{{$price[0]->total}}</span></div>
+			<div class="fc-price">应付金额:　<span class="deal_price">¥¥{{$price[0]->total}}</span></div>
 			<div class="fc-receiverInfo">寄送至:北京市海淀区三环内 中关村软件园9号楼 收货人：某某某 159****3201</div>
 		</div>
 		<div class="submit">
@@ -204,7 +204,7 @@
 						        <h4 id="myModalLabel" class="modal-title">添加收货地址</h4>
 						      </div>
 						      <div class="modal-body">
-						      	<form action="{{url('/store')}}" method="post" class="sui-form form-horizontal">
+						      	<form action="{{url('/store')}}" method="get" class="sui-form form-horizontal">
 						      		 <div class="control-group">
 									    <label class="control-label">收货人：</label>
 									    <div class="controls">

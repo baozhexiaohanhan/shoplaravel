@@ -17,12 +17,9 @@
 		<div class="py-container">
 			<div class="shortcut">
 				<ul class="fl">
-					 <ul class="fl">
-                        @if(!session('user_id'))
-                            <li class="f-item">请<a href="{{url('/login')}}" target="_blank">登录</a>　<span><a href="{{url('/reg')}}" target="_blank">免费注册</a></span></li>
-                                @else
-                            <span>欢迎{{session('user_name')}}登录</span></li> <span><a href="{{url('/logout')}}" target="_blank">切换账号</a></span></ul>
-                        @endif</ul>
+					<li class="f-item">品优购欢迎您！</li>
+					<li class="f-item">请登录　<span><a href="#">免费注册</a></span></li>
+				</ul>
 				<ul class="fr">
 					<li class="f-item">我的订单</li>
 					<li class="f-item space"></li>
@@ -66,40 +63,37 @@
 					<div class="yui3-u-1-8">小计（元）</div>
 					<div class="yui3-u-1-8">操作</div>
 				</div>
-				</div>
 				<div class="cart-item-list">
 					<div class="cart-shop">
 						<input type="checkbox" name="" id="" value="" />
-						<span class="shopname">神州数码专营店</span>
 					</div>
 					<div class="cart-body">
-						@foreach($cart as $k=>$v)
+					@foreach($cart as $k=>$v)
 						<div class="cart-list">
 							<ul class="goods-list yui3-g">
 								<li class="yui3-u-1-24">
-									<input type="checkbox" name="" id="" value="{{$v->rec_id}}"  class="cartid" />
+									<input type="checkbox" name=""  class="cartid" id="" value="{{$v->cart_id}}" />
 								</li>
 								<li class="yui3-u-11-24">
 									<div class="good-item">
-										<div class="item-img"><img src="{{$v['goods_thumb']}}" /></div><h2>&nbsp;&nbsp;</h2>
-										<div class="item-msg">{{$v['goods_name']}}<br>
+										<div class="item-img"><img src="{{$v->goods_thumb}}" /></div>
+										<div class="item-msg">{{$v->goods_name}}<br>
 											@if(isset($v['goods_attr']))
 												@foreach($v['goods_attr'] as $vv)
-												{{$vv['attr_name']}}:{{$vv['attr_value']}}
+													{{$vv['attr_name']}}:{{$vv['attr_value']}}
 												@endforeach
-												@endif
-
+											@endif
 										</div>
 									</div>
 								</li>
 								
-								<li class="yui3-u-1-8"><span class="price">{{$v['shop_price']}}</span></li>
+								<li class="yui3-u-1-8"><span class="price">{{$v->shop_price}}</span></li>
 								<li class="yui3-u-1-8">
 									<a href="javascript:void(0)" class="increment mins">-</a>
-									<input autocomplete="off" type="text" value="{{$v['buy_number']}}" minnum="{{$v['buy_number']}}" class="itxt" />
+									<input autocomplete="off" type="text" value="{{$v->buy_number}}" minnum="{{$v->buy_number}}" class="itxt" />
 									<a href="javascript:void(0)" class="increment plus">+</a>
 								</li>
-								<li class="yui3-u-1-8"><span class="sum">{{$v->buy_number}}*{{$v->shop_price}}</span></li>
+								<li class="yui3-u-1-8"><span class="sum">8848.00</span></li>
 								<li class="yui3-u-1-8">
 									<a href="#none">删除</a><br />
 									<a href="#none">移到我的关注</a>
@@ -107,7 +101,6 @@
 							</ul>
 						</div>
 					@endforeach
-
 					</div>
 				</div>
 			</div>
@@ -422,9 +415,9 @@
 <script type="text/javascript" src="/static/js/plugins/sui/sui.min.js"></script>
 <script type="text/javascript" src="/static/js/widget/nav.js"></script>
 </body>
-
 </html>
-<script type="text/javascript">
+<script scr="/static/jqery.min.js"></script>
+<script>
 	$('.cartid').click(function(){
 		var cart_id = new Array();
 		$('.cartid:checked').each(function(){
@@ -432,9 +425,8 @@
 		})
 		if(cart_id.length){
 			$.get('/getcartprice',{cart_id:cart_id},function(res){
-				if(res.code=='80000'){
+				if(res.code == '80000'){
 					$('.summoney').text(res.data);
-				
 				}
 			},'json')
 		}
@@ -448,6 +440,8 @@
 			alert('选择购买的商品');
 			return; 
 		}
-		location.href="/confrimorder?rec_id="+cart_id;
+		location.href="/confrimorder?cart_id="+cart_id;
 	})
+
+
 </script>

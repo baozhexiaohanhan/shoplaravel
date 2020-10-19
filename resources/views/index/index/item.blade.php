@@ -183,7 +183,7 @@
                         </div>
                         <div class="fl price">
                             <i>¥</i>
-                            <em>{{$v['shop_price']}}</em>
+                            <em>{{$v['market_price']}}</em>
                             <span>降价通知</span>
                         </div>
                         <div class="fr remark">
