@@ -199,7 +199,8 @@ $(function(){
 				@foreach($res as $k=>$v)
 				<li class="seckill-item">
 					<div class="pic">
-						<img src="{{$v['goods_img']}}" alt=''>
+						<a href="/items/{{$v['goods_id']}}"><img src="{{$v['goods_img']}}" alt=''></a>
+						
 					</div>
 					<div class="intro"><span>{{$v['goods_name']}}</span></div>
 					<div class='price'><b class='sec-price'>￥{{$v['goods_price']}}</b><b class='ever-price'>￥{{$v['goods_qprice']}}</b></div>
@@ -210,7 +211,7 @@ $(function(){
 						</div>
 						<div>剩余<b class='owned'>29</b>件</div>
 					</div>
-					<a class='sui-btn btn-block btn-buy' href='seckill-item.html' target='_blank'>立即抢购</a>
+					<a class='sui-btn btn-block btn-buy' href='/item' target='_blank'>立即抢购</a>
 				</li>
 				@endforeach
 			</ul>

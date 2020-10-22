@@ -40,3 +40,5 @@ Route::get('/return_url','Index\PayController@return_url');//同步跳转
 Route::get('/myorder','Index\HomeController@myorder');//我的订单
 
 Route::get('/seckill','seckill\SeckillController@seckill');//我的订单
+Route::get('/items/{goods_id}','seckill\SeckillController@items');//我的订单
+
