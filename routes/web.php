@@ -21,6 +21,7 @@ Route::any('/regdo','Index\LoginController@regdo');//执行注册
 Route::get('/item/{id}','Index\IndexController@item');//商品详情
 Route::get('/serch/{id}','Index\IndexController@serch');//列表
 Route::get('/getattrprice','Index\IndexController@getattrprice');
+Route::get('/cnm','Index\IndexController@cnm');
 Route::get('/addcart','Index\CartController@addcart');//加入购物车
 Route::get('/cart','Index\CartController@cart');//加入购物车
 Route::get('/getcartprice','Index\CartController@getcartprice');//商品价格
@@ -37,3 +38,5 @@ Route::get('/pay/{order_id}','Index\PayController@pay');//支付
 Route::get('/return_url','Index\PayController@return_url');//同步跳转
 
 Route::get('/myorder','Index\HomeController@myorder');//我的订单
+
+Route::get('/seckill','seckill\SeckillController@seckill');//我的订单

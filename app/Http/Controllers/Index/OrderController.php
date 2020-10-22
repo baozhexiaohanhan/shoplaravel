@@ -31,7 +31,7 @@ public function confrimorder(Request $request){
         $zxp = Order::where('user_id',$user)->get();
         $reg = new Region;
         foreach($zxp as $k=>$v){
-            $zxp[$k]['country'] = $reg->where('region_id',$v->country)->value('region_name'); 
+            $zxp[$k]['country'] = $reg->where('region_id',$v->country)->value('region_name');
             $zxp[$k]['province'] = $reg->where('region_id',$v->province)->value('region_name');
             $zxp[$k]['city'] = $reg->where('region_id',$v->city)->value('region_name');
             $zxp[$k]['district'] = $reg->where('region_id',$v->district)->value('region_name');
@@ -47,7 +47,7 @@ public function confrimorder(Request $request){
                 $cart[$k]['goods_attr'] = $Goods_attr?$Goods_attr->toArray():[];
             }
         }
-        
+
         $cartData = CartModel::select('ecs_goods.goods_id','ecs_goods.goods_name','ecs_goods.shop_price','ecs_goods.goods_thumb','ecs_cart.buy_number')
                     ->leftjoin('ecs_goods','ecs_cart.goods_id','=','ecs_goods.goods_id')
                     ->where(['user_id'=>$user,'is_on_sale'=>1])
@@ -61,15 +61,11 @@ public function confrimorder(Request $request){
         return view('index.order.confrimorder',['address'=>$address,'region'=>$region,'zxp'=>$zxp,'cart'=>$cart,'count'=>$count,'price'=>$price,'cartadd'=>$cartadd]);
     }
 
-
-
-
-
     public function getsondata(Request $request){
-        $region_id  = $request->region_id; 
+        $region_id  = $request->region_id;
         $region_son = Region::where('parent_id',$region_id)->get();
         return json_encode(['code'=>0,'msg'=>'OK','data'=>$region_son]);
-        
+
     }
 
     public function store(Request $request){
@@ -81,12 +77,12 @@ public function confrimorder(Request $request){
         }
     }
 public function order(Request $request){
-        
+
         $datas = $request->all();
         // dd($datas);
         $cartadd = $datas['cartadd']?explode(',',$datas['cartadd']):[];
         // dd($cartadd);
-  
+
         $user_id = session()->get('user_id');
 
         if(!$user_id){
@@ -162,7 +158,7 @@ public function order(Request $request){
                 }
 
                 DB::commit();
-                    
+
                 return redirect('/pay/'.$order_id);
                 } catch (Exception $e) {
                 DB::rollBack();

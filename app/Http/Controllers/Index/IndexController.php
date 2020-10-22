@@ -199,4 +199,18 @@ class IndexController extends Controller
         $price[] = $maxprice.'块钱以上';
         return $price;
     }
+
+
+    public function cnm(){
+
+        $zxp = Redis::sadd('zxpfirends','hjs','yqc','yxk','jyl','kwl','sj');
+        $jyl = Redis::sadd('jylfirends','zxp','yqc','yxk','bjz','kwl');
+        
+        $abc = Redis::sinter('zxpfirends','jylfirends');
+
+        $aaa = Redis::smembers('zxpfirends');
+
+        $bbb = Redis::sunion('zxpfirends','jylfirends');
+        dd($bbb);
+    }
 }
