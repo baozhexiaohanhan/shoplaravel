@@ -160,6 +160,20 @@ $(function(){
 				})
 			})
 		</script>
+<script>
+  var starttime = new Date("2020/11/20");
+  setInterval(function () {
+    var nowtime = new Date();
+    var time = starttime - nowtime;
+    var day = parseInt(time / 1000 / 60 / 60 / 24);
+    var hour = parseInt(time / 1000 / 60 / 60 % 24);
+    var minute = parseInt(time / 1000 / 60 % 60);
+    var seconds = parseInt(time / 1000 % 60);
+    $('.overtime').html(day + "天" + hour + "小时" + minute + "分钟" + seconds + "秒");
+  }, 1000);
+</script>
+</body>
+</html>
 </body>
 	<div class="py-container">
 		<div id="item">
@@ -194,9 +208,7 @@ $(function(){
 							<!--左右按钮-->
 							<div class="items">
 								<ul>
-                                @foreach($good as $k=>$v)
                                     <li><img src="{{$v['goods_img']}}" bimg="{{$v['goods_img']}}" onmousemove="preview(this)" /></li>
-                                @endforeach
                             </ul>
 							</div>
 							<a class="next">&gt;</a>
@@ -213,7 +225,7 @@ $(function(){
 					</div>
 					<div class="news">
 						<span><img src="/static/img/_/clock.png"/>品优秒杀</span>
-						<span class="overtime">距离结束：01:56:78</span>
+						<span class="overtime">00:00:00</span>
 						</div>
 					<div class="summary">
 						<div class="summary-wrap">
@@ -292,7 +304,7 @@ $(function(){
 							<div class="fl">
 								<ul class="btn-choose unstyled">
 									<li>
-										<a href="cart.html" target="_blank" class="sui-btn  btn-danger addshopcar">加入购物车</a>
+										<a href="cart.html"  class="sui-btn  btn-danger addshopcar">立即抢购</a>
 									</li>
 								</ul>
 							</div>
@@ -947,6 +959,83 @@ $(function(){
 	</div>
 </script>
 <!--侧栏面板结束-->
-undefined
+<script type="text/javascript" src="/static/js/plugins/jquery/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $("#service").hover(function(){
+            $(".service").show();
+        },function(){
+            $(".service").hide();
+        });
+        $("#shopcar").hover(function(){
+            $("#shopcarlist").show();
+        },function(){
+            $("#shopcarlist").hide();
+        });
+
+        $('dd a').click(function(){
+        $(this).parent().siblings().find('a').removeClass('selected');
+        $(this).addClass('selected');
+        getEndprice();
+    });
+    getEndprice();
+    function getEndprice(){
+        var goods_attr_id = new Array();
+        $('.selected').each(function(i){
+            goods_attr_id.push($(this).attr('goods_attr_id'));
+        });
+        if(goods_attr_id.length > 0){
+            var goods_id = $('.goods_id').val();
+            $.get('/getattrprice',{'goods_attr_id':goods_attr_id,'goods_id':goods_id},function(res){
+                    $('#price').html(res.data);
+            },'json');
+        }else{
+            return false;
+        }
+    }
+    })
+</script>
+<script type="text/javascript" src="/static/js/model/cartModel.js"></script>
+<script type="text/javascript" src="/static/js/plugins/jquery.easing/jquery.easing.min.js"></script>
+<script type="text/javascript" src="/static/js/plugins/sui/sui.min.js"></script>
+<script type="text/javascript" src="/static/js/plugins/jquery.jqzoom/jquery.jqzoom.js"></script>
+<script type="text/javascript" src="/static/js/plugins/jquery.jqzoom/zoom.js"></script>
+<script type="text/javascript" src="/static/js/pages/index.js"></script>
+</body>
+</html>
+<script scr="/static/jqery.min.js"></script>
+<script>
+    $('.plus').click(function(){
+        // alert(1111);
+
+    })
+    $(document).on('click','#jia',function (){
+        // alert(111);
+        var goods_id = $('.goods_id').val();
+        var buy_number = $('.itxt').val();
+        // alert(buy_number);
+        var goods_attr_id = new Array();
+         $('.selected').each(function(i){
+            goods_attr_id.push($(this).attr('goods_attr_id'));
+        });
+
+        $.get('/addcart',{'goods_id':goods_id,'buy_number':buy_number,'goods_attr_id':goods_attr_id},function(res){
+            // alert(res);
+             if(res.code=='1'){
+                location.href = "/login?refer="+location.href;
+            }
+            if(res.code=='20000' || res.code=='30000' || res.code=='40000' || res.code=='50000'){
+                alert(res.msg);
+            }
+            if(res.code=='60000' || res.code=='70000'){
+                if(confirm('亲，要前往购物车列表页面吗')){
+                    location.href = "/cart";
+                }
+            }
+        },'json');
+        // alert(goods_attr_id);
+    })
+</script>
+
 
 </html>

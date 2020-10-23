@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Model\GoodsModel;
 use App\Model\Goodsattr;
 use App\Model\Seckill;
+use App\Model\ProductModel;
 use Illuminate\Support\Facades\Redis;
 
 class SeckillController extends Controller
@@ -17,10 +18,15 @@ class SeckillController extends Controller
 
     	$res = Seckill::where('start_time','<','time()')->where('goods_price','>','goods_qprice')->get()->toArray();
     	return view('index.seckill.seckill',['res'=>$res]);
+
     }
 
 
      public function items($goods_id){
+            if(!$goods_id){
+                abort('没有此活动');
+            }
+        $time = time();
         //统计点击属性
         $hits = Redis::zincrby('item_',1,'item_'.$goods_id);
         //取最高的5条
@@ -33,8 +39,8 @@ class SeckillController extends Controller
         $goods=Seckill::where('goods_id',$goods_id)->get()->toArray();
         $good = GoodsModel::orderBy('goods_id','desc')->limit(5)->get()->toArray();
         $goo = Seckill::where('goods_id',$goods_id)->get()->toArray();
-        dd($goo);
-        return view('index.seckill.items',['goods'=>$goods,'good'=>$good,'goo'=>$goo,'attr'=>$attr,'jianjie'=>$jianjie,'guige'=>$guige,'hits'=>$hits]);
+        // dd($goo);
+        return view('index.seckill.items',['goods'=>$goods,'good'=>$good,'goo'=>$goo,'attr'=>$attr,'jianjie'=>$jianjie,'guige'=>$guige,'hits'=>$hits,'time'=>$time]);
     }
       //属性
 
