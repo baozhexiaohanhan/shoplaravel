@@ -332,20 +332,21 @@
         <div class="clearfix yui3-g Interest">
             <span class="x-line"></span>
             <div class="yui3-u row-405 Interest-conver">
-                @include('index.jyl.ads.1');
+                @include('index.jyl.ads.1')
+                 @include('index.jyl.ads.1')
             </div>
             <div class="yui3-u row-225 Interest-conver-split">
                 <h5>好东西</h5>
-                <img src="/static/img/interest02.png" />
-                <img src="/static/img/interest03.png" />
+                @include('index.jyl.ads.2')
+                @include('index.jyl.ads.3')
             </div>
             <div class="yui3-u row-405 Interest-conver-split blockgary">
                 <h5>品牌街</h5>
                 <div class="split-bt">
-                    <img src="/static/img/interest04.png" />
+                     @include('index.jyl.ads.4')
                 </div>
                 <div class="x-img fl">
-                    <img src="/static/img/interest05.png" />
+                     @include('index.jyl.ads.5')
                 </div>
                 <div class="x-img fr">
                     <img src="/static/img/interest06.png" />
@@ -354,8 +355,10 @@
             <div class="yui3-u row-165 brandArea">
                 <span class="brand-yline"></span>
                 <ul class="yui3-g brand-list">
-                    <li class="yui3-u-1-2 brand-pit"><img src="/static/img/brand01.png" /></li>
-                    <li class="yui3-u-1-2 brand-pit"><img src="/static/img/brand02.png" /></li>
+                            @include('index.jyl.ads.6')
+                            @include('index.jyl.ads.7')
+                            @include('index.jyl.ads.8')
+                            @include('index.jyl.ads.9')
                 </ul>
             </div>
         </div>
