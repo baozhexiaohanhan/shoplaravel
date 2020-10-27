@@ -211,7 +211,7 @@ $(function(){
 						</div>
 						<div>剩余<b class='owned'>29</b>件</div>
 					</div>
-					<a class='sui-btn btn-block btn-buy' href='/item' target='_blank'>立即抢购</a>
+					<a class='sui-btn btn-block btn-buy' href='/item'>立即抢购</a>
 				</li>
 				@endforeach
 			</ul>

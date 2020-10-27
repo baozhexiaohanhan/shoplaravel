@@ -117,7 +117,7 @@
                             <li class="f-item">闪购</li>
                             <li class="f-item">团购</li>
                             <li class="f-item">有趣</li>
-                            <li class="f-item"><a href="seckill-index.html" target="_blank">秒杀</a></li>
+                            <li class="f-item"><a href="/seckill" target="_blank">秒杀</a></li>
                         </ul>
                     </div>
                     <div class="yui3-u Right"></div>
@@ -475,26 +475,32 @@
                     <div class="clearfix"></div>
                     <div class="tab-content tab-wraped">
                         <div id="one" class="tab-pane active">
+
                             <ul class="goods-intro unstyled">
-                                <li>分辨率：1920*1080(FHD)</li>
-                                <li>后置摄像头：1200万像素</li>
-                                <li>前置摄像头：500万像素</li>
-                                <li>核 数：其他</li>
-                                <li>频 率：以官网信息为准</li>
-                                <li>品牌： Apple</li>
-                                <li>商品名称：APPLEiPhone 6s Plus</li>
-                                <li>商品编号：1861098</li>
-                                <li>商品毛重：0.51kg</li>
-                                <li>商品产地：中国大陆</li>
-                                <li>热点：指纹识别，Apple Pay，金属机身，拍照神器</li>
-                                <li>系统：苹果（IOS）</li>
-                                <li>像素：1000-1600万</li>
-                                <li>机身内存：64GB</li>
+                      @if($guige)
+                        @foreach($guige as $v)
+                        <dl>
+                                <dt>
+                                    <div class="fl title">
+                                    <i>{{$v['attr_name']}}</i>
+                                </div>
+                                </dt>
+                                @php $i=0; @endphp
+                                @foreach($v['attr_value'] as $k=>$v)
+                                <dd>{{$v}}<span title="点击取消选择">&nbsp;</span></dd>
+                                @php $i++; @endphp
+                                @endforeach
+                            </dl>
+                        @endforeach
+                        @endif
+
+
+
                             </ul>
                             <div class="intro-detail">
-                                <img src="/static/img/_/intro01.png" />
-                                <img src="/static/img/_/intro02.png" />
-                                <img src="/static/img/_/intro03.png" />
+                                @foreach($ff as $k=>$v)
+                                <img src="{{$v['goods_img']}}" />W
+                                @endforeach
                             </div>
                         </div>
                         <div id="two" class="tab-pane">

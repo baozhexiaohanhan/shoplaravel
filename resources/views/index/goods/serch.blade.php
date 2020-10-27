@@ -124,8 +124,8 @@
                             <li class="f-item">全球购</li>
                             <li class="f-item">闪购</li>
                             <li class="f-item">团购</li>
-                            <li class="f-item">有趣</li>
-                            <a href="seckill-index.html" target="_blank">秒杀</a>
+                            <li class="f-item">有趣</li>  
+                        <li class="f-item"><a href="/seckill" target="_blank">秒杀</a></li>
                             <li class="f-item">
 
                             </li>

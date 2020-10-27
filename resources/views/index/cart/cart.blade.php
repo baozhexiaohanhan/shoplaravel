@@ -88,17 +88,14 @@
 								</li>
 								
 								<li class="yui3-u-1-8"><span class="price">{{$v->shop_price}}</span></li>
+								<input type="hidden" class="cart_id" value="{{$v['cart_id']}}">
 								<li class="yui3-u-1-8">
 									<a href="javascript:void(0)" class="increment mins">-</a>
 									<input autocomplete="off" type="text" value="{{$v->buy_number}}" minnum="{{$v->buy_number}}" class="itxt" />
-									<a href="javascript:void(0)" class="increment plus">+</a>
-								</li>
-								<li class="yui3-u-1-8"><span class="sum">8848.00</span></li>
-								<li class="yui3-u-1-8">
-									<a href="#none">删除</a><br />
-									<a href="#none">移到我的关注</a>
-								</li>
+									<a href="javascript:void(0)" class="increment plus">+</a>			
 							</ul>
+
+							<a href="javascript:void(0)" id="zxp" >删除选中的商品</a>
 						</div>
 					@endforeach
 					</div>
@@ -110,9 +107,7 @@
 					<span>全选</span>
 				</div>
 				<div class="option">
-					<a href="#none">删除选中的商品</a>
 					<a href="#none">移到我的关注</a>
-					<a href="#none">清除下柜商品</a>
 				</div>
 				<div class="toolbar">
 					<div class="chosed">已选择<span>0</span>件商品</div>
@@ -126,26 +121,6 @@
 				</div>
 			</div>
 			<div class="clearfix"></div>
-			<div class="deled">
-				<span>已删除商品，您可以重新购买或加关注：</span>
-				<div class="cart-list del">
-					<ul class="goods-list yui3-g">
-						<li class="yui3-u-1-2">
-							<div class="good-item">
-								<div class="item-msg">Apple Macbook Air 13.3英寸笔记本电脑 银色（Corei5）处理器/8GB内存</div>
-							</div>
-						</li>
-						<li class="yui3-u-1-6"><span class="price">8848.00</span></li>
-						<li class="yui3-u-1-6">
-							<span class="number">1</span>
-						</li>
-						<li class="yui3-u-1-8">
-							<a href="#none">重新购买</a>
-							<a href="#none">移到我的关注</a>
-						</li>
-					</ul>
-				</div>
-			</div>
 			<div class="liked">
 				<ul class="sui-nav nav-tabs">
 					<li class="active">
@@ -162,106 +137,17 @@
 							<div class="carousel-inner">
 								<div class="active item">
 									<ul>
+										@foreach($cnm as $k=>$v)
 										<li>
-											<img src="/static/img/like1.png" />
+											<a href="item/{{$v->goods_id}}" ><img src="{{$v['goods_img']}}" width="165" height="500" alt="" /></a>
 											<div class="intro">
-												<i>Apple苹果iPhone 6s (A1699)</i>
+												<i>{{$v->goods_name}}</i>
 											</div>
 											<div class="money">
-												<span>$29.00</span>
-											</div>
-											<div class="incar">
-												<a href="#" class="sui-btn btn-bordered btn-xlarge btn-default"><i class="car"></i><span class="cartxt">加入购物车</span></a>
+												<span>${{$v->market_price}}</span>
 											</div>
 										</li>
-										<li>
-											<img src="/static/img/like2.png" />
-											<div class="intro">
-												<i>Apple苹果iPhone 6s (A1699)</i>
-											</div>
-											<div class="money">
-												<span>$29.00</span>
-											</div>
-											<div class="incar">
-												<a href="#" class="sui-btn btn-bordered btn-xlarge btn-default"><i class="car"></i><span class="cartxt">加入购物车</span></a>
-											</div>
-										</li>
-										<li>
-											<img src="/static/img/like3.png" />
-											<div class="intro">
-												<i>Apple苹果iPhone 6s (A1699)</i>
-											</div>
-											<div class="money">
-												<span>$29.00</span>
-											</div>
-											<div class="incar">
-												<a href="#" class="sui-btn btn-bordered btn-xlarge btn-default"><i class="car"></i><span class="cartxt">加入购物车</span></a>
-											</div>
-										</li>
-										<li>
-											<img src="/static/img/like4.png" />
-											<div class="intro">
-												<i>Apple苹果iPhone 6s (A1699)</i>
-											</div>
-											<div class="money">
-												<span>$29.00</span>
-											</div>
-											<div class="incar">
-												<a href="#" class="sui-btn btn-bordered btn-xlarge btn-default"><i class="car"></i><span class="cartxt">加入购物车</span></a>
-											</div>
-										</li>
-									</ul>
-								</div>
-								<div class="item">
-									<ul>
-										<li>
-											<img src="/static/img/like1.png" />
-											<div class="intro">
-												<i>Apple苹果iPhone 6s (A1699)</i>
-											</div>
-											<div class="money">
-												<span>$29.00</span>
-											</div>
-											<div class="incar">
-												<a href="#" class="sui-btn btn-bordered btn-xlarge btn-default"><i class="car"></i><span class="cartxt">加入购物车</span></a>
-											</div>
-										</li>
-										<li>
-											<img src="/static/img/like2.png" />
-											<div class="intro">
-												<i>Apple苹果iPhone 6s (A1699)</i>
-											</div>
-											<div class="money">
-												<span>$29.00</span>
-											</div>
-											<div class="incar">
-												<a href="#" class="sui-btn btn-bordered btn-xlarge btn-default"><i class="car"></i><span class="cartxt">加入购物车</span></a>
-											</div>
-										</li>
-										<li>
-											<img src="/static/img/like3.png" />
-											<div class="intro">
-												<i>Apple苹果iPhone 6s (A1699)</i>
-											</div>
-											<div class="money">
-												<span>$29.00</span>
-											</div>
-											<div class="incar">
-												<a href="#" class="sui-btn btn-bordered btn-xlarge btn-default"><i class="car"></i><span class="cartxt">加入购物车</span></a>
-											</div>
-										</li>
-										<li>
-											<img src="/static/img/like4.png" />
-											<div class="intro">
-												<i>Apple苹果iPhone 6s (A1699)</i>
-											</div>
-											<div class="money">
-												<span>$29.00</span>
-											</div>
-											<div class="incar">
-												<a href="#" class="sui-btn btn-bordered btn-xlarge btn-default"><i class="car"></i><span class="cartxt">加入购物车</span></a>
-											</div>
-										</li>
+										@endforeach
 									</ul>
 								</div>
 							</div>
@@ -442,6 +328,17 @@
 		}
 		location.href="/confrimorder?cart_id="+cart_id;
 	})
+
+	 $(document).on('click','#zxp',function (){
+ 		var cart_id = $('.cart_id').val();
+ 		if(confirm('确认删除？')){
+			$.get('/destroy/'+cart_id,function(result){
+				if(result.code=='0000'){
+					location.reload();
+				}
+			},'json');
+		}
+	});
 
 
 </script>

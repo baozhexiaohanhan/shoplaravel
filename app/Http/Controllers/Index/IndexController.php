@@ -42,7 +42,8 @@ class IndexController extends Controller
         $goods=GoodsModel::where('goods_id',$goods_id)->get()->toArray();
         $good = GoodsModel::orderBy('goods_id','desc')->limit(5)->get()->toArray();
         $goo = GoodsModel::where('goods_id',$goods_id)->get()->toArray();
-        return view('index.index.item',['goods'=>$goods,'good'=>$good,'goo'=>$goo,'attr'=>$attr,'jianjie'=>$jianjie,'guige'=>$guige,'hits'=>$hits]);
+        $ff = GoodsModel::where('goods_id',$goods_id)->get()->toArray();
+        return view('index.index.item',['goods'=>$goods,'good'=>$good,'goo'=>$goo,'attr'=>$attr,'jianjie'=>$jianjie,'guige'=>$guige,'hits'=>$hits,'ff'=>$ff]);
     }
       //属性
 
@@ -179,6 +180,7 @@ class IndexController extends Controller
                 $hot_goods = GoodsModel::whereIn('goods_id',$hit_goods_id)->get();
           //属性
         }
+
         
         return view('index.goods.serch',compact('goods','brand','url','price','hot_goods'));
     }

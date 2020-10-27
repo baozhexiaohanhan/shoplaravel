@@ -89,7 +89,7 @@
                         <div class="fr shopcar">
                             <div class="show-shopcar" id="shopcar">
                                 <span class="car"></span>
-                                <a class="sui-btn btn-default btn-xlarge" href="cart.html" target="_blank">
+                                <a class="sui-btn btn-default btn-xlarge" href="/cart" target="_blank">
                                     <span>我的购物车</span>
                                     <i class="shopnum">0</i>
                                 </a>
@@ -115,7 +115,7 @@
                             <li class="f-item">闪购</li>
                             <li class="f-item">团购</li>
                             <li class="f-item">有趣</li>
-                            <li class="f-item"><a href="seckill-index.html" target="_blank">秒杀</a></li>
+                            <li class="f-item"><a href="/seckill" target="_blank">秒杀</a></li>
                         </ul>
                     </div>
                     <div class="yui3-u Right"></div>
@@ -165,7 +165,7 @@
 {{--                        <div class=" active item">--}}
                             @foreach($good as $k=>$v)
                                 <div class="item">
-                                    <a href="/particulars/{{$v->goods_id}}">
+                                    <a href="/item/{{$v->goods_id}}">
                                         <img src="{{$v->goods_img}}" width="450px" height="1000px" />
                                     </a>
                                 </div>

@@ -15,6 +15,10 @@ class SeckillController extends Controller
     
 
     public function seckill(){
+            $user = session('user_id');
+        if(!$user){
+           return redirect('/login');
+        }
 
     	$res = Seckill::where('start_time','<','time()')->where('goods_price','>','goods_qprice')->get()->toArray();
     	return view('index.seckill.seckill',['res'=>$res]);
@@ -23,6 +27,12 @@ class SeckillController extends Controller
 
 
      public function items($goods_id){
+
+       $user = session('user_id');
+        if(!$user){
+           return redirect('/login');
+        }
+
             if(!$goods_id){
                 abort('没有此活动');
             }
@@ -40,7 +50,7 @@ class SeckillController extends Controller
         $good = GoodsModel::orderBy('goods_id','desc')->limit(5)->get()->toArray();
         $goo = Seckill::where('goods_id',$goods_id)->get()->toArray();
         // dd($goo);
-        return view('index.seckill.items',['goods'=>$goods,'good'=>$good,'goo'=>$goo,'attr'=>$attr,'jianjie'=>$jianjie,'guige'=>$guige,'hits'=>$hits,'time'=>$time]);
+        return view('index.seckill.items',['goods'=>$goods,'good'=>$good,'goo'=>$goo,'attr'=>$attr,'jianjie'=>$jianjie,'guige'=>$guige,'hits'=>$hits,'time'=>$time,'user_id'=>$user]);
     }
       //属性
 
