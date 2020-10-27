@@ -22,6 +22,8 @@ Route::get('/item/{id}','Index\IndexController@item');//商品详情
 Route::get('/serch/{id}','Index\IndexController@serch');//列表
 Route::get('/getattrprice','Index\IndexController@getattrprice');
 Route::get('/cnm','Index\IndexController@cnm');
+
+Route::get('/laji','Index\AController@laji');
 Route::get('/addcart','Index\CartController@addcart');//加入购物车
 Route::get('/cart','Index\CartController@cart');//加入购物车
 Route::get('/getcartprice','Index\CartController@getcartprice');//商品价格

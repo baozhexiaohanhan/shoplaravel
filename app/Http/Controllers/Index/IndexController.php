@@ -215,4 +215,10 @@ class IndexController extends Controller
         $bbb = Redis::sunion('zxpfirends','jylfirends');
         dd($bbb);
     }
+
+
+
+
+
+    
 }

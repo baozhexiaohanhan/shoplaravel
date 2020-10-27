@@ -17,9 +17,11 @@
 		<div class="py-container">
 			<div class="shortcut">
 				<ul class="fl">
-					<li class="f-item">品优购欢迎您！</li>
-					<li class="f-item">请登录　<span><a href="#">免费注册</a></span></li>
-				</ul>
+					   @if(!session('user_id'))
+                            <li class="f-item">请<a href="{{url('/login')}}" target="_blank">登录</a>　<span><a href="{{url('/reg')}}" target="_blank">免费注册</a></span></li>
+                                @else
+                            <span>欢迎{{session('user_name')}}登录</span></li> <span><a href="{{url('/logout')}}" target="_blank">切换账号</a></span></ul>
+                        @endif</ul>
 				<ul class="fr">
 					<li class="f-item">我的订单</li>
 					<li class="f-item space"></li>
@@ -56,7 +58,7 @@
 			<h4>全部商品<span>11</span></h4>
 			<div class="cart-main">
 				<div class="yui3-g cart-th">
-					<div class="yui3-u-1-4"><input type="checkbox" name="" id="" value="" /> 全部</div>
+					<div class="yui3-u-1-4"><input type="checkbox" name="checkbox1" id="" value="" /> 全部</div>
 					<div class="yui3-u-1-4">商品</div>
 					<div class="yui3-u-1-8">单价（元）</div>
 					<div class="yui3-u-1-8">数量</div>
@@ -64,15 +66,12 @@
 					<div class="yui3-u-1-8">操作</div>
 				</div>
 				<div class="cart-item-list">
-					<div class="cart-shop">
-						<input type="checkbox" name="" id="" value="" />
-					</div>
 					<div class="cart-body">
 					@foreach($cart as $k=>$v)
 						<div class="cart-list">
 							<ul class="goods-list yui3-g">
 								<li class="yui3-u-1-24">
-									<input type="checkbox" name=""  class="cartid" id="" value="{{$v->cart_id}}" />
+									<span><input type="checkbox" name="checkbox2"  class="cartid" id="" value="{{$v->cart_id}}" /></span>
 								</li>
 								<li class="yui3-u-11-24">
 									<div class="good-item">
@@ -102,15 +101,8 @@
 				</div>
 			</div>
 			<div class="cart-tool">
-				<div class="select-all">
-					<input type="checkbox" name="" id="" value="" />
-					<span>全选</span>
-				</div>
-				<div class="option">
-					<a href="#none">移到我的关注</a>
-				</div>
 				<div class="toolbar">
-					<div class="chosed">已选择<span>0</span>件商品</div>
+					<div class="chosed">已选择<span>11</span>件商品</div>
 					<div class="sumprice">
 						<span><em>总价（不含运费） ：</em><i class="summoney">¥0.00</i></span>
 						<span><em>已节省：</em><i>-¥20.00</i></span>
@@ -331,7 +323,7 @@
 
 	 $(document).on('click','#zxp',function (){
  		var cart_id = $('.cart_id').val();
- 		if(confirm('确认删除？')){
+ 		if(confirm('确认删除此商品？')){
 			$.get('/destroy/'+cart_id,function(result){
 				if(result.code=='0000'){
 					location.reload();
@@ -339,6 +331,13 @@
 			},'json');
 		}
 	});
+	 $(document).on('click','input[name="checkbox1"]',function (){
+    var _this = $(this);
+    if(_this.prop('checked') == true){
+        $('input[name="checkbox2"]').prop('checked',true);
+    }else{
+        $('input[name="checkbox2"]').prop('checked',false);
+    }
 
-
+});
 </script>

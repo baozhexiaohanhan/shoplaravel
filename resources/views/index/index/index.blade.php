@@ -139,9 +139,9 @@
                             <div class="subitem">
                                 @foreach($v['son'] as $vv)
                                     <dl class="fore1">
-                                        <dt><a href="/list/{{$vv['goods_id']}}">{{$vv->cat_name}}</a></dt>
+                                        <dt><a href="/item/{{$vv['goods_id']}}">{{$vv->cat_name}}</a></dt>
                                         <dd>
-                                            @foreach($vv['son'] as $vvv)\
+                                            @foreach($vv['son'] as $vvv)
                                             <em><a href="">{{$vvv->cat_name}}</a></em>
                                             @endforeach
                                         </dd>
