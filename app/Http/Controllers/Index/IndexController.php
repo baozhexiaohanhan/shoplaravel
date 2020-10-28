@@ -14,7 +14,8 @@ class IndexController extends Controller
     public function index(){
 //        $goods = GoodsModel::get();
         $is_new = GoodsModel::where('is_new','=','1')->limit(4)->get();
-//        dd($is_new);
+        $f = GoodsModel::where('is_new','=','1')->limit(4)->get();
+        $g = BrandModel::orderBy('brand_id')->limit(4)->get();
         $goods = GoodsModel::orderBy('goods_id')->limit(12)->get()->toArray();
         //列表
         $key = GoodsModel::orderBy('goods_id')->limit(20)->get()->toArray();
@@ -25,7 +26,7 @@ class IndexController extends Controller
         //无限极分类
         $tree = $this->Treecate($catedata);
      
-        return view('index.index.index',compact('goods','is_new','good','tree','key'));
+        return view('index.index.index',compact('goods','is_new','good','tree','key','f','g'));
     }   
 
     //推荐详情
