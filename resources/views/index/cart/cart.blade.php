@@ -89,9 +89,9 @@
 								<li class="yui3-u-1-8"><span class="price">{{$v->shop_price}}</span></li>
 								<input type="hidden" class="cart_id" value="{{$v['cart_id']}}">
 								<li class="yui3-u-1-8">
-									<a href="javascript:void(0)" class="increment mins">-</a>
-									<input autocomplete="off" type="text" value="{{$v->buy_number}}" minnum="{{$v->buy_number}}" class="itxt" />
-									<a href="javascript:void(0)" class="increment plus">+</a>			
+									<a href="javascript:void(0)" class="increment mins" id="mins">-</a>
+									<input autocomplete="off" type="text" id="itxt" value="{{$v->buy_number}}" minnum="{{$v->buy_number}}" class="itxt" />
+									<a href="javascript:void(0)" class="increment plus" id="plus">+</a>			
 							</ul>
 
 							<a href="javascript:void(0)" id="zxp" >删除选中的商品</a>
@@ -340,4 +340,34 @@
     }
 
 });
+
+
+	 
+ $(document).on('click','.plus',function (){
+ 		var buy_number = $(this).prev().val();
+ 		var buy_number =parseInt(buy_number)+1
+ 		$(this).prev().val(buy_number);
+ })
+
+
+ $(document).on('click','.mins',function (){
+ 		var buy_number = $(this).next().val();
+ 		var buy_number =parseInt(buy_number)-1
+ 		
+ 		if(buy_number<=0){
+ 			alert('不能再减了宝贝！！！');
+ 		}else{
+ 			$(this).next().val(buy_number);
+ 		}
+   		
+ })
+
+ $(document).on('blur','.itxt',function (){
+		var buy_number = $(this).val();
+ 		if(buy_number<1){
+ 			alert('最少只能买一个');
+ 		}else{
+ 			buy_number = $(this).val(buy_number);
+ 		}
+});	
 </script>

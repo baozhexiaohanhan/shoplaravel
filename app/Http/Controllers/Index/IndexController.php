@@ -15,7 +15,7 @@ class IndexController extends Controller
 //        $goods = GoodsModel::get();
         $is_new = GoodsModel::where('is_new','=','1')->limit(4)->get();
         $f = GoodsModel::where('is_new','=','1')->limit(4)->get();
-        $g = BrandModel::orderBy('brand_id')->limit(4)->get();
+        $g = GoodsModel::orderBy('goods_id')->limit(4)->get()->toArray();
         $goods = GoodsModel::orderBy('goods_id')->limit(12)->get()->toArray();
         //列表
         $key = GoodsModel::orderBy('goods_id')->limit(20)->get()->toArray();

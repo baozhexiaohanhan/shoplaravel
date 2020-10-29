@@ -180,7 +180,7 @@
                     <div class="clearix"></div>
                     <ul class="news-list unstyled">
                         <li>
-                            <span class="bold">[特惠]</span>备战开学季 全民半价购数码
+                            <span class="bold">[特惠]</span>全场半价欢迎入坑。
                         </li>
                         <li>
                             <span class="bold">[公告]</span>备战开学季 全民半价购数码
@@ -373,7 +373,7 @@
                 <ul class="sui-nav nav-tabs">
                     @foreach($g as $k=>$v)
                     <li class="active">
-                        <a href="/">{{$v->brand_name}}</a>
+                        <a href="/serch/{id}">{{$v['goods_name']}}</a>
                     </li>
                     @endforeach
                 </ul>

@@ -245,9 +245,9 @@
                         <div class="fl title">
                             <div class="control-group">
                                 <div class="controls">
-                                    <input autocomplete="off" type="text" value="1" minnum="1" class="itxt" />
-                                    <a href="javascript:void(0)" class="increment plus">+</a>
-                                    <a href="javascript:void(0)" class="increment mins">-</a>
+                                    <input autocomplete="off" type="text" value="1" minnum="1" id="ooo" class="itxt" />
+                                    <a href="javascript:void(0)" class="increment plus" id="plus">+</a>
+                                    <a href="javascript:void(0)" class="increment mins" id="mins">-</a>
                                 </div>
                             </div>
                         </div>
@@ -990,4 +990,28 @@
         },'json');
         // alert(goods_attr_id);
     })
+
+
+ $(document).on('click','.plus',function (){
+        var buy_number = $(this).prev().val();
+        var buy_number =parseInt(buy_number)+1
+        $(this).prev().val(buy_number);
+ })
+
+
+
+ $(document).on('click','.mins',function (){
+        var buy_number = $(this).prev().prev().val();
+        var buy_number =parseInt(buy_number)-1
+        
+        if(buy_number<=0){
+            alert('不能再减了宝贝！！！');
+        }else{
+            $(this).prev().prev().val(buy_number);
+        }
+        
+ })
+
+
+
 </script>
