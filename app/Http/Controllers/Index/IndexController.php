@@ -42,9 +42,10 @@ class IndexController extends Controller
         $guige = $this->guige($goods_id);
         $goods=GoodsModel::where('goods_id',$goods_id)->get()->toArray();
         $good = GoodsModel::orderBy('goods_id','desc')->limit(5)->get()->toArray();
+        $g = GoodsModel::orderBy('goods_id','desc')->limit(6)->get()->toArray();
         $goo = GoodsModel::where('goods_id',$goods_id)->get()->toArray();
         $ff = GoodsModel::where('goods_id',$goods_id)->get()->toArray();
-        return view('index.index.item',['goods'=>$goods,'good'=>$good,'goo'=>$goo,'attr'=>$attr,'jianjie'=>$jianjie,'guige'=>$guige,'hits'=>$hits,'ff'=>$ff]);
+        return view('index.index.item',['goods'=>$goods,'good'=>$good,'goo'=>$goo,'attr'=>$attr,'jianjie'=>$jianjie,'guige'=>$guige,'hits'=>$hits,'ff'=>$ff,'g'=>$g]);
     }
       //属性
 

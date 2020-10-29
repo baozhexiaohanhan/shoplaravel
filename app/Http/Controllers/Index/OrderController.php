@@ -171,4 +171,9 @@ public function order(Request $request){
             return $order_sn;
         }
 
+        public function yqc(){
+
+         return view('index.user.yqc');
+        }
+
 }

@@ -20,38 +20,20 @@
 <div id="nav-bottom">
     <!--顶部-->
     <div class="nav-top">
-        <div class="top">
+      <div class="top">
             <div class="py-container">
                 <div class="shortcut">
                     <ul class="fl">
-                        <ul class="fl">
-                        @if(!session('user_id'))
+                       @if(!session('user_id'))
                             <li class="f-item">请<a href="{{url('/login')}}" target="_blank">登录</a>　<span><a href="{{url('/reg')}}" target="_blank">免费注册</a></span></li>
                                 @else
-                            <span>欢迎{{session('user_name')}}登录</span></li> <span><a href="{{url('/logout')}}" target="_blank">切换账号</a></span></ul>
+                            <span>欢迎{{session('user_name')}}登录</span></li> <span><a href="{{url('/login')}}" target="_blank">切换账号</a></span></ul>
                         @endif</ul>
                     <ul class="fr">
-                        <li class="f-item">我的订单</li>
-                        <li class="f-item space"></li>
-                        <li class="f-item"><a href="home.html" target="_blank">我的品优购</a></li>
-                        <li class="f-item space"></li>
-                        <li class="f-item">品优购会员</li>
-                        <li class="f-item space"></li>
-                        <li class="f-item">企业采购</li>
-                        <li class="f-item space"></li>
-                        <li class="f-item">关注品优购</li>
-                        <li class="f-item space"></li>
+                        <li class="f-item"><a href="/myorder">我的订单</a>----
                         <li class="f-item" id="service">
-                            <span>客户服务</span>
-                            <ul class="service">
-                                <li><a href="cooperation.html" target="_blank">合作招商</a></li>
-                                <li><a href="shoplogin.html" target="_blank">商家后台</a></li>
-                                <li><a href="cooperation.html" target="_blank">合作招商</a></li>
-                                <li><a href="#">商家后台</a></li>
-                            </ul>
+                            <span><a href="/yqc">客户服务</a></span>
                         </li>
-                        <li class="f-item space"></li>
-                        <li class="f-item">网站导航</li>
                     </ul>
                 </div>
             </div>
@@ -390,60 +372,6 @@
                 </div>
             </div>
             <div class="fr detail">
-                <div class="clearfix fitting">
-                    <h4 class="kt">选择搭配</h4>
-                    <div class="good-suits">
-                        <div class="fl master">
-                            <div class="list-wrap">
-                                <div class="p-img">
-                                    <img src="/static/img/_/l-m01.png" />
-                                </div>
-                                <em>￥5299</em>
-                                <i>+</i>
-                            </div>
-                        </div>
-                        <div class="fl suits">
-                            <ul class="suit-list">
-                                <li class="">
-                                    <div id="">
-                                        <img src="/static/img/_/dp01.png" />
-                                    </div>
-                                    <i>Feless费勒斯VR</i>
-                                    <label data-toggle="checkbox" class="checkbox-pretty">
-                                        <input type="checkbox"><span>39</span>
-                                    </label>
-                                </li>
-                                <li class="">
-                                    <div id=""><img src="/static/img/_/dp02.png" /> </div>
-                                    <i>Feless费勒斯VR</i>
-                                    <label data-toggle="checkbox" class="checkbox-pretty">
-                                        <input type="checkbox"><span>50</span>
-                                    </label>
-                                </li>
-                                <li class="">
-                                    <div id=""><img src="/static/img/_/dp03.png" /></div>
-                                    <i>Feless费勒斯VR</i>
-                                    <label data-toggle="checkbox" class="checkbox-pretty">
-                                        <input type="checkbox"><span>59</span>
-                                    </label>
-                                </li>
-                                <li class="">
-                                    <div id=""><img src="/static/img/_/dp04.png" /></div>
-                                    <i>Feless费勒斯VR</i>
-                                    <label data-toggle="checkbox" class="checkbox-pretty">
-                                        <input type="checkbox"><span>99</span>
-                                    </label>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="fr result">
-                            <div class="num">已选购0件商品</div>
-                            <div class="price-tit"><strong>套餐价</strong></div>
-                            <div class="price">￥5299</div>
-                            <button class="sui-btn  btn-danger addshopcar">加入购物车</button>
-                        </div>
-                    </div>
-                </div>
                 <div class="tab-main intro">
                     <ul class="sui-nav nav-tabs tab-wraped">
                         <li class="active">
@@ -525,18 +453,19 @@
             <h4 class="kt">猜你喜欢</h4>
             <div class="like-list">
                 <ul class="yui3-g">
+                    @foreach($g as $v)
                     <li class="yui3-u-1-6">
                         <div class="list-wrap">
                             <div class="p-img">
-                                <img src="/static/img/_/itemlike01.png" />
+                                <img src="{{$v['goods_img']}}" />
                             </div>
                             <div class="attr">
-                                <em>DELL戴尔Ins 15MR-7528SS 15英寸 银色 笔记本</em>
+                                <em>{{$v['goods_name']}}</em>
                             </div>
                             <div class="price">
                                 <strong>
                                     <em>¥</em>
-                                    <i>3699.00</i>
+                                    <i>{{$v['market_price']}}</i>
                                 </strong>
                             </div>
                             <div class="commit">
@@ -544,101 +473,7 @@
                             </div>
                         </div>
                     </li>
-                    <li class="yui3-u-1-6">
-                        <div class="list-wrap">
-                            <div class="p-img">
-                                <img src="/static/img/_/itemlike02.png" />
-                            </div>
-                            <div class="attr">
-                                <em>Apple苹果iPhone 6s/6s Plus 16G 64G 128G</em>
-                            </div>
-                            <div class="price">
-                                <strong>
-                                    <em>¥</em>
-                                    <i>4388.00</i>
-                                </strong>
-                            </div>
-                            <div class="commit">
-                                <i class="command">已有700人评价</i>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="yui3-u-1-6">
-                        <div class="list-wrap">
-                            <div class="p-img">
-                                <img src="/static/img/_/itemlike03.png" />
-                            </div>
-                            <div class="attr">
-                                <em>DELL戴尔Ins 15MR-7528SS 15英寸 银色 笔记本</em>
-                            </div>
-                            <div class="price">
-                                <strong>
-                                    <em>¥</em>
-                                    <i>4088.00</i>
-                                </strong>
-                            </div>
-                            <div class="commit">
-                                <i class="command">已有700人评价</i>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="yui3-u-1-6">
-                        <div class="list-wrap">
-                            <div class="p-img">
-                                <img src="/static/img/_/itemlike04.png" />
-                            </div>
-                            <div class="attr">
-                                <em>DELL戴尔Ins 15MR-7528SS 15英寸 银色 笔记本</em>
-                            </div>
-                            <div class="price">
-                                <strong>
-                                    <em>¥</em>
-                                    <i>4088.00</i>
-                                </strong>
-                            </div>
-                            <div class="commit">
-                                <i class="command">已有700人评价</i>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="yui3-u-1-6">
-                        <div class="list-wrap">
-                            <div class="p-img">
-                                <img src="/static/img/_/itemlike05.png" />
-                            </div>
-                            <div class="attr">
-                                <em>DELL戴尔Ins 15MR-7528SS 15英寸 银色 笔记本</em>
-                            </div>
-                            <div class="price">
-                                <strong>
-                                    <em>¥</em>
-                                    <i>4088.00</i>
-                                </strong>
-                            </div>
-                            <div class="commit">
-                                <i class="command">已有700人评价</i>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="yui3-u-1-6">
-                        <div class="list-wrap">
-                            <div class="p-img">
-                                <img src="/static/img/_/itemlike06.png" />
-                            </div>
-                            <div class="attr">
-                                <em>DELL戴尔Ins 15MR-7528SS 15英寸 银色 笔记本</em>
-                            </div>
-                            <div class="price">
-                                <strong>
-                                    <em>¥</em>
-                                    <i>4088.00</i>
-                                </strong>
-                            </div>
-                            <div class="commit">
-                                <i class="command">已有700人评价</i>
-                            </div>
-                        </div>
-                    </li>
+                    @endforeach
                 </ul>
             </div>
         </div>

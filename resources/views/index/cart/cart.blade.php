@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-
+                                    
 <head>
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE">
@@ -14,32 +14,23 @@
 <body>
 	<!--head-->
 	<div class="top">
-		<div class="py-container">
-			<div class="shortcut">
-				<ul class="fl">
-					   @if(!session('user_id'))
+            <div class="py-container">
+                <div class="shortcut">
+                    <ul class="fl">
+                       @if(!session('user_id'))
                             <li class="f-item">请<a href="{{url('/login')}}" target="_blank">登录</a>　<span><a href="{{url('/reg')}}" target="_blank">免费注册</a></span></li>
                                 @else
-                            <span>欢迎{{session('user_name')}}登录</span></li> <span><a href="{{url('/logout')}}" target="_blank">切换账号</a></span></ul>
+                            <span>欢迎{{session('user_name')}}登录</span></li> <span><a href="{{url('/login')}}" target="_blank">切换账号</a></span></ul>
                         @endif</ul>
-				<ul class="fr">
-					<li class="f-item">我的订单</li>
-					<li class="f-item space"></li>
-					<li class="f-item">我的品优购</li>
-					<li class="f-item space"></li>
-					<li class="f-item">品优购会员</li>
-					<li class="f-item space"></li>
-					<li class="f-item">企业采购</li>
-					<li class="f-item space"></li>
-					<li class="f-item">关注品优购</li>
-					<li class="f-item space"></li>
-					<li class="f-item">客户服务</li>
-					<li class="f-item space"></li>
-					<li class="f-item">网站导航</li>
-				</ul>
-			</div>
-		</div>
-	</div>
+                    <ul class="fr">
+                        <li class="f-item"><a href="/myorder">我的订单</a>----
+                        <li class="f-item" id="service">
+                            <span><a href="/yqc">客户服务</a></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 	<div class="cart py-container">
 		<!--logoArea-->
 		<div class="logoArea">
