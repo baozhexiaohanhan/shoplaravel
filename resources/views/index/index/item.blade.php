@@ -174,12 +174,13 @@
                     </div>
                     <div class="summary-wrap">
                         <div class="fl title">
-                            <i>促　　销</i>
+                            <i>优惠券</i>
                         </div>
                         <div class="fl fix-width">
-                            <i class="red-bg">加价购</i>
-                            <em class="t-gray">满999.00另加20.00元，或满1999.00另加30.00元，或满2999.00另加40.00元，即可在购物车换
-                                购热销商品</em>
+                            @foreach($ecs_activity as $k=>$v)
+                            <i class="red-bg ecs_activity" id="{{$v->act_id}}" title="{{$v->act_name}}">{{$v->act_name}}</i>
+                            <input type="hidden" name="{{$v->act_id}}" id="{{$v->act_id}}">
+                           @endforeach
                         </div>
                     </div>
                 </div>
@@ -795,10 +796,21 @@
 </html>
 <script scr="/static/jqery.min.js"></script>
 <script>
-    $('.plus').click(function(){
-        // alert(1111);
-
-    })
+    $(document).on('click','.ecs_activity',function (){
+       var goods_id = $('.goods_id').val();
+       var act_id = $(this).attr('id');
+        $.get('/ecs_activity',{'goods_id':goods_id,'act_id':act_id},function(res){
+       if(res.code=='-1'){
+         location.href = "/cart";
+          }         
+        if(res.code=="0"){
+          alert('领取成功');
+        }
+        if(res.code=="1"){
+          alert('你已经领取过了不能太贪心呦！！！');
+        }
+    },'json')
+    });
     $(document).on('click','#jia',function (){
         // alert(111);
         var goods_id = $('.goods_id').val();

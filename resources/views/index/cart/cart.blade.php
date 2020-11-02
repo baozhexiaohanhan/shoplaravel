@@ -95,8 +95,19 @@
 				<div class="toolbar">
 					<div class="chosed">已选择<span>11</span>件商品</div>
 					<div class="sumprice">
+						<div class="summary-wrap">
+                        <div class="fl title">
+                            <i>优惠券</i>
+                        </div>
+                         @foreach($pss as $k=>$v)
+                           <font color="red"><i class="red-bg" id="{{$v->act_id}}" title="{{$v->act_name}}">{{$v->act_name}}</i></font> 
+                            <input type="hidden" name="{{$v->act_id}}" id="{{$v->act_id}}">
+                           @endforeach
+                    </div>
 						<span><em>总价（不含运费） ：</em><i class="summoney">¥0.00</i></span>
-						<span><em>已节省：</em><i>-¥20.00</i></span>
+								@foreach($ps as $k=>$v)
+						<span><em>已节省：</em> <i>-¥<font color="red">{{$v->min_amount}}元</i></font> </span>
+						@endforeach
 					</div>
 					<div class="sumbtn">
 						<a class="sum-btn" href="javascript:void(0)">结算</a>

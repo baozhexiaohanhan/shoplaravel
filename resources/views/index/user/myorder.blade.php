@@ -97,7 +97,7 @@
 							<li class="f-item">闪购</li>
 							<li class="f-item">团购</li>
 							<li class="f-item">有趣</li>
-							<li class="f-item"><a href="seckill-index.html" target="_blank">秒杀</a></li>
+							<li class="f-item"><a href="/seckill" target="_blank">秒杀</a></li>
 						</ul>
 					</div>
 					<div class="yui3-u Right"></div>
@@ -188,26 +188,17 @@ $(function(){
                         </div>
                         <div class="order-detail">
                             <div class="orders">
-                                <div class="choose-order">
-                                    <div class="sui-pagination pagination-large top-pages">
-                                        <ul>
-                                            <li class="prev disabled"><a href="#">上一页</a></li>
-
-                                            <li class="next"><a href="#">下一页</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-
 								<!--order1-->
                                 <div class="choose-title">
                                     <label data-toggle="checkbox" class="checkbox-pretty ">
-                                           <input type="checkbox" checked="checked"><span>2017-02-11 11:59　订单编号：7867473872181848  店铺：哇哈哈 <a>和我联系</a></span>
+                                           <input type="checkbox" checked="checked"><span>2020-02-11 11:59　订单编号：7867473872181848  店铺：小贱贱
+                                            <a href="/yqc">和我联系</a></span>
                                      </label>
 									  <a class="sui-btn btn-info share-btn">分享</a>
                                 </div>
                                 <table class="sui-table table-bordered order-datatable">
                                     <tbody>
-                                        @foreach($goods as $k=>$v)
+                                     @foreach($goods as $k=>$v)
                                         <tr>
                                             <td width="35%">
                                                 <div class="typographic"><img src="{{$v['goods_img']}}" width="60px" />
@@ -250,12 +241,7 @@ $(function(){
                                     </tbody>
                                 </table>
                                 <!--order2-->
-                                <div class="choose-title">
-                                    <label data-toggle="checkbox" class="checkbox-pretty ">
-                                           <input type="checkbox" checked="checked"><span>2017-02-11 11:59　订单编号：7867473872181848  店铺：哇哈哈 <a>和我联系</a></span>
-                                     </label>
-									  <a class="sui-btn btn-info share-btn">分享</a>
-                                </div>
+                               
                             <div class="clearfix"></div>
                         </div>
 

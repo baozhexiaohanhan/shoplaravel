@@ -27,13 +27,12 @@ Route::get('/laji','Index\AController@laji');
 Route::get('/addcart','Index\CartController@addcart');//加入购物车
 Route::get('/cart','Index\CartController@cart');//加入购物车
 Route::get('/getcartprice','Index\CartController@getcartprice');//商品价格
-
+Route::any('/ecs_activity','Index\CartController@ecs_activity');//商品价格
 Route::get('/confrimorder','Index\OrderController@confrimorder');//商品价格
 Route::get('/yqc','Index\OrderController@yqc');//商品价格
 Route::get('/destroy/{cart_id}','Index\CartController@destroy');//商品价格
 
 Route::get('/getsondata','Index\OrderController@getsondata');//商品价格
-
 Route::post('/store','Index\OrderController@store');//商品价格
 Route::any('/order','Index\OrderController@order');//购物车入库
 

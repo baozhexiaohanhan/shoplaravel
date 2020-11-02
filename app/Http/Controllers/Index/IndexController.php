@@ -31,6 +31,10 @@ class IndexController extends Controller
 
     //推荐详情
     public function item($goods_id){
+          $user = session('user_id');
+        if(!$user){
+           return redirect('/login');
+        }
         //统计点击属性
         $hits = Redis::zincrby('item_',1,'item_'.$goods_id);
         //取最高的5条
@@ -45,7 +49,11 @@ class IndexController extends Controller
         $g = GoodsModel::orderBy('goods_id','desc')->limit(6)->get()->toArray();
         $goo = GoodsModel::where('goods_id',$goods_id)->get()->toArray();
         $ff = GoodsModel::where('goods_id',$goods_id)->get()->toArray();
-        return view('index.index.item',['goods'=>$goods,'good'=>$good,'goo'=>$goo,'attr'=>$attr,'jianjie'=>$jianjie,'guige'=>$guige,'hits'=>$hits,'ff'=>$ff,'g'=>$g]);
+
+
+        //优惠券
+        $ecs_activity = \DB::table('ecs_activity')->get();
+        return view('index.index.item',['goods'=>$goods,'good'=>$good,'goo'=>$goo,'attr'=>$attr,'jianjie'=>$jianjie,'guige'=>$guige,'hits'=>$hits,'ff'=>$ff,'g'=>$g,'ecs_activity'=>$ecs_activity]);
     }
       //属性
 

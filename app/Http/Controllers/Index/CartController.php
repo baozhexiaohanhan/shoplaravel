@@ -104,8 +104,13 @@ class CartController extends Controller
          }
 
           $cnm  = GoodsModel::where('is_new','=','1')->limit(5)->get();
-         // dd($cart);
-        return view('index.cart.cart',['cart'=>$cart,'cnm'=>$cnm]);
+
+            $act_id = \DB::table('user_activity')->where('user_id',$user)->pluck('act_id');
+
+            $pss = \DB::table('ecs_activity')->get();
+            $ps = \DB::table('ecs_activity')->limit(1)->get();
+
+        return view('index.cart.cart',['cart'=>$cart,'cnm'=>$cnm,'act_id'=>$act_id,'pss'=>$pss,'ps'=>$ps]);
     }
 
     public function getcartprice(){
@@ -131,4 +136,24 @@ class CartController extends Controller
 
         }
     }
+
+    public function ecs_activity(Request $request){
+        $user = session('user_id');
+        // dd($user);
+        if(!$user){
+            return json_encode(['code'=>1,'msg'=>'没有登录']);
+        }
+         $goods_id = $request->goods_id;
+         $act_id = $request->act_id;
+        $data = ['user_id'=>$user,'act_id'=>$act_id];
+        $count = \DB::table('user_activity')->where($data)->count();
+        if($count){
+              return json_encode(['code'=>'1','msg'=>'你已经领取过了不能太贪心呦！！！']);
+
+        }
+        $res = \DB::table('user_activity')->insert($data);
+        if($res){
+              return json_encode(['code'=>'0','msg'=>'领取成功']);
+        }
+            }
 }
