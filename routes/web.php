@@ -29,6 +29,7 @@ Route::get('/cart','Index\CartController@cart');//加入购物车
 Route::get('/getcartprice','Index\CartController@getcartprice');//商品价格
 Route::any('/ecs_activity','Index\CartController@ecs_activity');//商品价格
 Route::get('/confrimorder','Index\OrderController@confrimorder');//商品价格
+Route::get('/sj','Index\CartController@sj');//商品价格
 Route::get('/yqc','Index\OrderController@yqc');//商品价格
 Route::get('/destroy/{cart_id}','Index\CartController@destroy');//商品价格
 

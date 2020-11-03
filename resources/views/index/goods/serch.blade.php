@@ -209,8 +209,11 @@
                                 </div>
                                 <div class="price">
                                     <strong>
+                                        原价
                                         <em>¥</em>
-                                        <i>{{$v['shop_price']}}</i>
+                                        <i>{{$v['shop_price']}}</i></strong><br>
+                                        降价
+                                         <i>¥{{$v['market_price']}}</i>
                                     </strong>
                                 </div>
                                 <div class="attr">
@@ -243,7 +246,7 @@
         </div>
         <!--hotsale-->
         <div class="clearfix hot-sale">
-            <h4 class="title">热卖商品</h4>
+            <h4 class="title">最新商品</h4>
             <div class="hot-list">
                 <ul class="yui3-g">
                     @foreach($hot_goods as $k=>$v)

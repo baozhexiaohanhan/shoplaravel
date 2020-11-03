@@ -46,7 +46,7 @@
 		</div>
 		<!--All goods-->
 		<div class="allgoods">
-			<h4>全部商品<span>11</span></h4>
+			<h4>全部商品<span>20</span></h4>
 			<div class="cart-main">
 				<div class="yui3-g cart-th">
 					<div class="yui3-u-1-4"><input type="checkbox" name="checkbox1" id="" value="" /> 全部</div>
@@ -77,7 +77,7 @@
 									</div>
 								</li>
 								
-								<li class="yui3-u-1-8"><span class="price">{{$v->shop_price}}</span></li>
+								<li class="yui3-u-1-8"><span class="price">原价￥{{$v->shop_price}} <br><font color="red">降价￥{{$v['market_price']}}</span></font></li>
 								<input type="hidden" class="cart_id" value="{{$v['cart_id']}}">
 								<li class="yui3-u-1-8">
 									<a href="javascript:void(0)" class="increment mins" id="mins">-</a>
@@ -118,10 +118,7 @@
 			<div class="liked">
 				<ul class="sui-nav nav-tabs">
 					<li class="active">
-						<a href="#index" data-toggle="tab">猜你喜欢</a>
-					</li>
-					<li>
-						<a href="#profile" data-toggle="tab">特惠换购</a>
+						<a href="#index" data-toggle="tab">推荐商品</a>
 					</li>
 				</ul>
 				<div class="clearfix"></div>
@@ -138,19 +135,14 @@
 												<i>{{$v->goods_name}}</i>
 											</div>
 											<div class="money">
-												<span>${{$v->market_price}}</span>
+												<span>${{$v->shop_price}}</span>
 											</div>
 										</li>
 										@endforeach
 									</ul>
 								</div>
 							</div>
-							<a href="#myCarousel" data-slide="prev" class="carousel-control left">‹</a>
-							<a href="#myCarousel" data-slide="next" class="carousel-control right">›</a>
 						</div>
-					</div>
-					<div id="profile" class="tab-pane">
-						<p>特惠选购</p>
 					</div>
 				</div>
 			</div>
@@ -372,4 +364,5 @@
  			buy_number = $(this).val(buy_number);
  		}
 });	
+
 </script>

@@ -187,7 +187,7 @@ class IndexController extends Controller
                 $hitsarr = explode('_', $v);
                 $hit_goods_id[]=$hitsarr[1];
             }
-                $hot_goods = GoodsModel::whereIn('goods_id',$hit_goods_id)->get();
+                $hot_goods = GoodsModel::whereIn('goods_id',$hit_goods_id)->limit(1)->get();
           //属性
         }
 

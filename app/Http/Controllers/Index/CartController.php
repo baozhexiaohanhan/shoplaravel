@@ -40,16 +40,15 @@ class CartController extends Controller
              $product = ProductModel::select('product_id','product_number')->where(['goods_id'=>$goods_id,'goods_attr'=>$goods_attr_id])->first();
             //  echo $product_number;exit;
             if($product->product_number<$buy_number){
-                return json_encode(['code'=>40000,'msg'=>'商品库存不足1']);
+                return json_encode(['code'=>40000,'msg'=>'商品库存不足']);
             }
         }else{
             if($goods->goods_number<$buy_number){
-                return json_encode(['code'=>50000,'msg'=>'商品库存不足']);
+                return json_encode(['code'=>50000,'msg'=>'不能超过20件商品']);
             }
         }
         //根据当前用户的ID判断购物车是否有此商品,没有的话商品添加数据库，有的话更改数据库数量
         $cart = CartModel::where(['user_id'=>$user,'goods_id'=>$goods_id,'goods_attr_id'=>$goods_attr_id])->first();
-         // dd($cart);
         if($cart){
             //更新数据库
             $buy_number = $cart->buy_number+$buy_number;
@@ -85,6 +84,11 @@ class CartController extends Controller
         }
         if($res){
             return json_encode(['code'=>70000,'msg'=>'成功加入购物车']);
+        }else{
+        if($res<=20){
+            return json_encode(['code'=>90000,'msg'=>'不能超过20件商品']);
+
+        }
         }
     }
     //购物车列表
@@ -156,4 +160,5 @@ class CartController extends Controller
               return json_encode(['code'=>'0','msg'=>'领取成功']);
         }
             }
+
 }

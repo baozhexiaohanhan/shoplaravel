@@ -161,15 +161,16 @@
                 <div class="summary">
                     <div class="summary-wrap">
                         <div class="fl title">
-                            <i>价　　格</i>
+                            <i>原  价</i>
                         </div>
                         <div class="fl price">
                             <i>¥</i>
-                            <em>{{$v['market_price']}}</em>
-                            <span>降价通知</span>
+                         <em>{{$v['shop_price']}} 
+                            <i>降价通知</i>
+                            <em>¥{{$v['market_price']}}</em>
                         </div>
                         <div class="fr remark">
-                            <i>点击次数</i><em>{{$hits}}</em>
+                            <i>浏览量</i><em>{{$hits}}</em>
                         </div>
                     </div>
                     <div class="summary-wrap">
@@ -826,7 +827,7 @@
              if(res.code=='1'){
                 location.href = "/login?refer="+location.href;
             }
-            if(res.code=='20000' || res.code=='30000' || res.code=='40000' || res.code=='50000'){
+            if(res.code=='20000' || res.code=='30000' || res.code=='40000' || res.code=='50000' || res.code=='90000'){
                 alert(res.msg);
             }
             if(res.code=='60000' || res.code=='70000'){
@@ -834,7 +835,7 @@
                     location.href = "/cart";
                 }
             }
-        },'json');
+        },'json'); 
         // alert(goods_attr_id);
     })
 
